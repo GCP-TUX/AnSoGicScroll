@@ -4,6 +4,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QDebug>
+#include <qwindowdefs_win.h>
 
 #if defined( Q_OS_WIN )
 #include <dwmapi.h>

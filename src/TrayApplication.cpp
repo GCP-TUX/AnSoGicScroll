@@ -58,7 +58,7 @@
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
-#include "tools/windowhighlightoverlay.h"
+#include "windowhighlightoverlay.h"
 #endif
 
 #include <QApplication>
@@ -882,7 +882,7 @@ bool TrayApplication::setupLinuxScrollingCapture(ScrollCaptureContext& ctx)
 #endif
 
 #if defined(Q_OS_WIN)
-bool TrayIcon::setupWindowsScrollingCapture(ScrollCaptureContext& ctx)
+bool TrayApplication::setupWindowsScrollingCapture(ScrollCaptureContext& ctx)
 {
     ctx.captureSS = new captureScreenScroll();
 
