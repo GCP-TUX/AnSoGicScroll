@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=AnSoGicScroll
+GenericName=Screenshot Tool
+Comment=Captura de pantalla simple y con desplazamiento desde la bandeja del sistema
+Exec=AnSoGicScroll
+Icon=ansogicscroll
+Terminal=false
+Categories=Utility;Graphics;
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

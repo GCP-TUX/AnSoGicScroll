@@ -1,0 +1,9 @@
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/AnSoGicScroll.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/install.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/AnSoGicScroll_autogen_timestamp_deps.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/Desktop-Debug/CMakeFiles/AnSoGicScroll_autogen.dir

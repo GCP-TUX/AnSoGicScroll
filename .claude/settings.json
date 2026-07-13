@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "deny": [
+      "Write(./CLAUDE.md)",
+      "Write(./.claude/CLAUDE.md)"
+    ]
+  }
+}
