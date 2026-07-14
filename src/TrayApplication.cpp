@@ -263,20 +263,20 @@ void TrayApplication::buildMenu()
 {
     m_menu = new QMenu();
 
-    QAction *screenshotAction = m_menu->addAction(tr("Tomar captura de pantalla"));
+    QAction *screenshotAction = m_menu->addAction(tr("Take screenshot"));
     connect(screenshotAction, &QAction::triggered, m_screenshotManager, &ScreenshotManager::start);
 
-    auto* captureActionWithDesplazamiento =
-        new QAction(tr("Tomar captura de pantalla con desplazamiento"), this);
-    connect(captureActionWithDesplazamiento,
+    auto* captureActionWithScrolling =
+        new QAction(tr("Take scrolling screenshot"), this);
+    connect(captureActionWithScrolling,
             &QAction::triggered,
             this,
             [this]() { startScrollingCapture(); });
 
-    m_menu->addAction(captureActionWithDesplazamiento);
+    m_menu->addAction(captureActionWithScrolling);
     m_menu->addSeparator();
 
-    QAction *aboutAction = m_menu->addAction(tr("Acerca de"));
+    QAction *aboutAction = m_menu->addAction(tr("About"));
     connect(aboutAction, &QAction::triggered, this, [this]() {
         if (!m_aboutDialog) {
             m_aboutDialog = new AboutDialog();
@@ -286,7 +286,7 @@ void TrayApplication::buildMenu()
         m_aboutDialog->activateWindow();
     });
 
-    QAction *quitAction = m_menu->addAction(tr("Salir"));
+    QAction *quitAction = m_menu->addAction(tr("Quit"));
     connect(quitAction, &QAction::triggered, qApp, &QApplication::quit);
 
     m_trayIcon->setContextMenu(m_menu);
