@@ -134,3 +134,64 @@ if(UNIX AND NOT APPLE)
     install(FILES resources/linux/ansogicscroll.desktop
             DESTINATION share/applications)
 endif()
+
+# =============================================================
+# Añade esto al final de tu CMakeLists.txt principal
+# =============================================================
+
+include(GNUInstallDirs)
+
+# Instala el ejecutable (ajusta el nombre del target real)
+install(TARGETS AutoLogicScroll
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    BUNDLE  DESTINATION .
+)
+
+# --------------------------------------------------------------
+# Metadatos generales de CPack
+# --------------------------------------------------------------
+set(CPACK_PACKAGE_NAME "AutoLogicScroll")
+set(CPACK_PACKAGE_VENDOR "TuNombreOrganizacion")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Captura de pantalla con autoscroll inteligente")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_CONTACT "tu-email@ejemplo.com")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+
+# --------------------------------------------------------------
+# LINUX -> genera .deb para APT
+# --------------------------------------------------------------
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Tu Nombre <tu-email@ejemplo.com>")
+    set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+
+    # Dependencias en tiempo de ejecución (ajusta según libs reales que uses)
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS
+        "libqt6core6, libqt6gui6, libqt6widgets6, libopencv-core4.5d | libopencv-core406, libx11-6, libwayland-client0"
+    )
+
+    # Genera automáticamente las dependencias reales del binario (recomendado)
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+endif()
+
+# --------------------------------------------------------------
+# WINDOWS -> instalador NSIS
+# --------------------------------------------------------------
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(CPACK_GENERATOR "NSIS")
+    set(CPACK_NSIS_PACKAGE_NAME "AutoLogicScroll")
+    set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+    set(CPACK_NSIS_MODIFY_PATH ON)
+endif()
+
+# --------------------------------------------------------------
+# MACOS -> imagen .dmg
+# --------------------------------------------------------------
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(CPACK_GENERATOR "DragNDrop")
+    set(CPACK_DMG_VOLUME_NAME "AutoLogicScroll")
+endif()
+
+include(CPack)
