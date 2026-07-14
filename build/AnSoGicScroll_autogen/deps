@@ -24,6 +24,16 @@ AnSoGicScroll_autogen/timestamp: \
 	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/capturescreenscroll.cpp \
 	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/capturescreenscroll.h \
 	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/main.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/portalrequesthelper.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/portalrequesthelper.h \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/scrollregionselector.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/scrollregionselector.h \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/uinputscrollcontroller.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/uinputscrollcontroller.h \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/waylandportalcapturebackend.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/waylandportalcapturebackend.h \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/windowhighlightoverlay.cpp \
+	/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/src/windowhighlightoverlay.h \
 	/usr/include/alloca.h \
 	/usr/include/asm-generic/errno-base.h \
 	/usr/include/asm-generic/errno.h \
@@ -49,8 +59,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/bits/c++0x_warning.h \
 	/usr/include/c++/13/bits/char_traits.h \
 	/usr/include/c++/13/bits/charconv.h \
-	/usr/include/c++/13/bits/chrono.h \
-	/usr/include/c++/13/bits/codecvt.h \
 	/usr/include/c++/13/bits/concept_check.h \
 	/usr/include/c++/13/bits/cpp_type_traits.h \
 	/usr/include/c++/13/bits/cxxabi_forced.h \
@@ -60,10 +68,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/bits/exception.h \
 	/usr/include/c++/13/bits/exception_defines.h \
 	/usr/include/c++/13/bits/exception_ptr.h \
-	/usr/include/c++/13/bits/fs_dir.h \
-	/usr/include/c++/13/bits/fs_fwd.h \
-	/usr/include/c++/13/bits/fs_ops.h \
-	/usr/include/c++/13/bits/fs_path.h \
 	/usr/include/c++/13/bits/functexcept.h \
 	/usr/include/c++/13/bits/functional_hash.h \
 	/usr/include/c++/13/bits/hash_bytes.h \
@@ -74,11 +78,8 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/bits/list.tcc \
 	/usr/include/c++/13/bits/locale_classes.h \
 	/usr/include/c++/13/bits/locale_classes.tcc \
-	/usr/include/c++/13/bits/locale_conv.h \
 	/usr/include/c++/13/bits/locale_facets.h \
 	/usr/include/c++/13/bits/locale_facets.tcc \
-	/usr/include/c++/13/bits/locale_facets_nonio.h \
-	/usr/include/c++/13/bits/locale_facets_nonio.tcc \
 	/usr/include/c++/13/bits/localefwd.h \
 	/usr/include/c++/13/bits/max_size_type.h \
 	/usr/include/c++/13/bits/memory_resource.h \
@@ -95,7 +96,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/bits/postypes.h \
 	/usr/include/c++/13/bits/predefined_ops.h \
 	/usr/include/c++/13/bits/ptr_traits.h \
-	/usr/include/c++/13/bits/quoted_string.h \
 	/usr/include/c++/13/bits/range_access.h \
 	/usr/include/c++/13/bits/ranges_algo.h \
 	/usr/include/c++/13/bits/ranges_algobase.h \
@@ -151,7 +151,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/climits \
 	/usr/include/c++/13/clocale \
 	/usr/include/c++/13/cmath \
-	/usr/include/c++/13/codecvt \
 	/usr/include/c++/13/compare \
 	/usr/include/c++/13/complex \
 	/usr/include/c++/13/concepts \
@@ -160,7 +159,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/cstdio \
 	/usr/include/c++/13/cstdlib \
 	/usr/include/c++/13/cstring \
-	/usr/include/c++/13/ctime \
 	/usr/include/c++/13/cwchar \
 	/usr/include/c++/13/cwctype \
 	/usr/include/c++/13/debug/assertions.h \
@@ -173,17 +171,14 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/ext/numeric_traits.h \
 	/usr/include/c++/13/ext/string_conversions.h \
 	/usr/include/c++/13/ext/type_traits.h \
-	/usr/include/c++/13/filesystem \
 	/usr/include/c++/13/functional \
 	/usr/include/c++/13/initializer_list \
-	/usr/include/c++/13/iomanip \
 	/usr/include/c++/13/ios \
 	/usr/include/c++/13/iosfwd \
 	/usr/include/c++/13/istream \
 	/usr/include/c++/13/iterator \
 	/usr/include/c++/13/limits \
 	/usr/include/c++/13/list \
-	/usr/include/c++/13/locale \
 	/usr/include/c++/13/map \
 	/usr/include/c++/13/memory \
 	/usr/include/c++/13/mutex \
@@ -196,13 +191,11 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/c++/13/pstl/glue_algorithm_defs.h \
 	/usr/include/c++/13/pstl/glue_memory_defs.h \
 	/usr/include/c++/13/pstl/glue_numeric_defs.h \
-	/usr/include/c++/13/ratio \
 	/usr/include/c++/13/sstream \
 	/usr/include/c++/13/stdexcept \
 	/usr/include/c++/13/streambuf \
 	/usr/include/c++/13/string \
 	/usr/include/c++/13/string_view \
-	/usr/include/c++/13/system_error \
 	/usr/include/c++/13/tr1/bessel_function.tcc \
 	/usr/include/c++/13/tr1/beta_function.tcc \
 	/usr/include/c++/13/tr1/ell_integral.tcc \
@@ -227,7 +220,7 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/errno.h \
 	/usr/include/features-time64.h \
 	/usr/include/features.h \
-	/usr/include/libintl.h \
+	/usr/include/inttypes.h \
 	/usr/include/limits.h \
 	/usr/include/linux/errno.h \
 	/usr/include/linux/limits.h \
@@ -258,8 +251,35 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/opencv4/opencv2/core/version.hpp \
 	/usr/include/opencv4/opencv2/core/vsx_utils.hpp \
 	/usr/include/opencv4/opencv2/opencv_modules.hpp \
+	/usr/include/pipewire-0.3/pipewire/context.h \
+	/usr/include/pipewire-0.3/pipewire/core.h \
+	/usr/include/pipewire-0.3/pipewire/loop.h \
+	/usr/include/pipewire-0.3/pipewire/port.h \
+	/usr/include/pipewire-0.3/pipewire/properties.h \
+	/usr/include/pipewire-0.3/pipewire/protocol.h \
+	/usr/include/pipewire-0.3/pipewire/proxy.h \
+	/usr/include/pipewire-0.3/pipewire/stream.h \
+	/usr/include/pipewire-0.3/pipewire/utils.h \
 	/usr/include/pthread.h \
 	/usr/include/sched.h \
+	/usr/include/signal.h \
+	/usr/include/spa-0.2/spa/buffer/buffer.h \
+	/usr/include/spa-0.2/spa/buffer/meta.h \
+	/usr/include/spa-0.2/spa/param/buffers.h \
+	/usr/include/spa-0.2/spa/param/param.h \
+	/usr/include/spa-0.2/spa/param/port-config.h \
+	/usr/include/spa-0.2/spa/param/profile.h \
+	/usr/include/spa-0.2/spa/param/route.h \
+	/usr/include/spa-0.2/spa/pod/command.h \
+	/usr/include/spa-0.2/spa/pod/pod.h \
+	/usr/include/spa-0.2/spa/support/loop.h \
+	/usr/include/spa-0.2/spa/support/system.h \
+	/usr/include/spa-0.2/spa/utils/defs.h \
+	/usr/include/spa-0.2/spa/utils/dict.h \
+	/usr/include/spa-0.2/spa/utils/hook.h \
+	/usr/include/spa-0.2/spa/utils/list.h \
+	/usr/include/spa-0.2/spa/utils/string.h \
+	/usr/include/spa-0.2/spa/utils/type.h \
 	/usr/include/stdc-predef.h \
 	/usr/include/stdint.h \
 	/usr/include/stdio.h \
@@ -299,6 +319,20 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/bits/sched.h \
 	/usr/include/x86_64-linux-gnu/bits/select.h \
 	/usr/include/x86_64-linux-gnu/bits/setjmp.h \
+	/usr/include/x86_64-linux-gnu/bits/sigaction.h \
+	/usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+	/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+	/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+	/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+	/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+	/usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+	/usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+	/usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+	/usr/include/x86_64-linux-gnu/bits/sigstack.h \
+	/usr/include/x86_64-linux-gnu/bits/sigstksz.h \
+	/usr/include/x86_64-linux-gnu/bits/sigthread.h \
+	/usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+	/usr/include/x86_64-linux-gnu/bits/ss_flags.h \
 	/usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
 	/usr/include/x86_64-linux-gnu/bits/stdint-least.h \
 	/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
@@ -320,17 +354,24 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/error_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+	/usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+	/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
 	/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
@@ -356,16 +397,20 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h \
 	/usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
 	/usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
-	/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
 	/usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
-	/usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QMap \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QMutex \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QPoint \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QPointer \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QRect \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QVariant \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QtGlobal \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qanystringview.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydata.h \
@@ -374,6 +419,7 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qatomic.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qatomic_cxx11.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qbasicatomic.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qbindingstorage.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qbytearray.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qbytearrayalgorithms.h \
@@ -408,6 +454,7 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmutex.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qnamespace.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qnumeric.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
@@ -444,12 +491,20 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtcore-config.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtcoreexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtmetamacros.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtsan_impl.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtypeinfo.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qutf8stringview.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/QDBusArgument \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/QDBusObjectPath \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/qdbusargument.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/qdbusextratypes.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/qtdbusexports.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtDBus/qtdbusglobal.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QImage \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/QPixmap \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h \
@@ -490,6 +545,8 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/sys/select.h \
 	/usr/include/x86_64-linux-gnu/sys/syscall.h \
 	/usr/include/x86_64-linux-gnu/sys/types.h \
+	/usr/include/x86_64-linux-gnu/sys/ucontext.h \
+	/usr/include/x86_64-linux-gnu/sys/un.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/emmintrin.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/mm_malloc.h \
@@ -611,6 +668,7 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake \
+	/usr/share/cmake-3.28/Modules/CMakeNinjaFindMake.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeParseImplicitIncludeInfo.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeParseImplicitLinkInfo.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeParseLibraryArchitecture.cmake \
@@ -619,9 +677,11 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake \
 	/usr/share/cmake-3.28/Modules/CMakeTestCompilerCommon.cmake \
-	/usr/share/cmake-3.28/Modules/CMakeUnixFindMake.cmake \
+	/usr/share/cmake-3.28/Modules/CPack.cmake \
+	/usr/share/cmake-3.28/Modules/CPackComponent.cmake \
 	/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake \
 	/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake \
+	/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake \
 	/usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake \
 	/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake \
 	/usr/share/cmake-3.28/Modules/Compiler/ADSP-DetermineCompiler.cmake \
@@ -668,12 +728,15 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
 	/usr/share/cmake-3.28/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/usr/share/cmake-3.28/Modules/FeatureSummary.cmake \
+	/usr/share/cmake-3.28/Modules/FindFontconfig.cmake \
+	/usr/share/cmake-3.28/Modules/FindFreetype.cmake \
 	/usr/share/cmake-3.28/Modules/FindOpenGL.cmake \
 	/usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake \
 	/usr/share/cmake-3.28/Modules/FindPackageMessage.cmake \
 	/usr/share/cmake-3.28/Modules/FindPkgConfig.cmake \
 	/usr/share/cmake-3.28/Modules/FindThreads.cmake \
 	/usr/share/cmake-3.28/Modules/FindVulkan.cmake \
+	/usr/share/cmake-3.28/Modules/FindX11.cmake \
 	/usr/share/cmake-3.28/Modules/GNUInstallDirs.cmake \
 	/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake \
 	/usr/share/cmake-3.28/Modules/Internal/CheckFlagCommonConfig.cmake \
@@ -686,4 +749,6 @@ AnSoGicScroll_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake \
 	/usr/share/cmake-3.28/Modules/Platform/Linux.cmake \
 	/usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake \
+	/usr/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake \
+	/usr/share/cmake-3.28/Templates/CPackConfig.cmake.in \
 	/usr/bin/cmake

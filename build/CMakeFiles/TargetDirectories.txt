@@ -1,4 +1,6 @@
 /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/AnSoGicScroll.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/package.dir
+/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/package_source.dir
 /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/edit_cache.dir
 /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/rebuild_cache.dir
 /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/list_install_components.dir

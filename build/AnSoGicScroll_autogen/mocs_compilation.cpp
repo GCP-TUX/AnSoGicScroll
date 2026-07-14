@@ -6,3 +6,7 @@
 #include "UVLADIE3JM/moc_ScrollCaptureToolbar.cpp"
 #include "UVLADIE3JM/moc_TrayApplication.cpp"
 #include "UVLADIE3JM/moc_capturescreenscroll.cpp"
+#include "UVLADIE3JM/moc_portalrequesthelper.cpp"
+#include "UVLADIE3JM/moc_scrollregionselector.cpp"
+#include "UVLADIE3JM/moc_waylandportalcapturebackend.cpp"
+#include "UVLADIE3JM/moc_windowhighlightoverlay.cpp"

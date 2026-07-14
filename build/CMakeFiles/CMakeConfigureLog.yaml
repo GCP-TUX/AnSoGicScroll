@@ -5,7 +5,7 @@ events:
     kind: "message-v1"
     backtrace:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:2 (project)"
     message: |
       The system is: Linux - 6.17.0-35-generic - x86_64
   -
@@ -14,7 +14,7 @@ events:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:2 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
       Compiler: /usr/bin/c++ 
@@ -35,12 +35,12 @@ events:
     backtrace:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
       - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:2 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8"
-      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8"
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-CQW9sX"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-CQW9sX"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -49,13 +49,10 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8'
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-CQW9sX'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5965d/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_5965d.dir/build.make CMakeFiles/cmTC_5965d.dir/build
-        gmake[1]: Entering directory '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8'
-        Building CXX object CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/ninja -v cmTC_a8aaf
+        [1/2] /usr/bin/c++   -v -o CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -65,8 +62,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5965d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccnu1FuD.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a8aaf.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccyauAB5.s
         GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
         
@@ -87,15 +84,13 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 7896445e4990772fdae9dc0659a99266
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/'
-         as -v --64 -o CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccnu1FuD.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/'
+         as -v --64 -o CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccyauAB5.s
         GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_5965d
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5965d.dir/link.txt --verbose=1
-        /usr/bin/c++  -v CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5965d 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] : && /usr/bin/c++  -v CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a8aaf   && :
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
@@ -108,10 +103,9 @@ events:
         gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5965d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5965d.'
-         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5g6VzM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5965d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5965d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5965d.'
-        gmake[1]: Leaving directory '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a8aaf' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a8aaf.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cciAN1Oh.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_a8aaf /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a8aaf' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a8aaf.'
         
       exitCode: 0
   -
@@ -119,7 +113,7 @@ events:
     backtrace:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
       - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:2 (project)"
     message: |
       Parsed CXX implicit include dir info: rv=done
         found start of include info
@@ -147,17 +141,14 @@ events:
     backtrace:
       - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
       - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:3 (project)"
+      - "CMakeLists.txt:2 (project)"
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8']
+        ignore line: [Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-CQW9sX']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5965d/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_5965d.dir/build.make CMakeFiles/cmTC_5965d.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-V41uK8']
-        ignore line: [Building CXX object CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/ninja -v cmTC_a8aaf]
+        ignore line: [[1/2] /usr/bin/c++   -v -o CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -167,8 +158,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5965d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccnu1FuD.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_a8aaf.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccyauAB5.s]
         ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
         ignore line: []
@@ -189,15 +180,13 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 7896445e4990772fdae9dc0659a99266]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccnu1FuD.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccyauAB5.s]
         ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_5965d]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5965d.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5965d ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] : && /usr/bin/c++  -v CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a8aaf   && :]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
@@ -210,13 +199,13 @@ events:
         ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5965d' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_5965d.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc5g6VzM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_5965d /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a8aaf' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_a8aaf.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cciAN1Oh.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_a8aaf /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/cc5g6VzM.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cciAN1Oh.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -234,7 +223,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_5965d] ==> ignore
+          arg [cmTC_a8aaf] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
@@ -246,7 +235,7 @@ events:
           arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
-          arg [CMakeFiles/cmTC_5965d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_a8aaf.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -284,12 +273,12 @@ events:
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/QtPublicDependencyHelpers.cmake:33 (find_dependency)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Dependencies.cmake:24 (_qt_internal_find_third_party_dependencies)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake:122 (include)"
-      - "CMakeLists.txt:12 (find_package)"
+      - "CMakeLists.txt:10 (find_package)"
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi"
-      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi"
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-jPkkBw"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-jPkkBw"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -299,17 +288,11 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi'
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-jPkkBw'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b4cfc/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_b4cfc.dir/build.make CMakeFiles/cmTC_b4cfc.dir/build
-        gmake[1]: se entra en el directorio '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi'
-        Building CXX object CMakeFiles/cmTC_b4cfc.dir/src.cxx.o
-        /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -o CMakeFiles/cmTC_b4cfc.dir/src.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi/src.cxx
-        Linking CXX executable cmTC_b4cfc
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b4cfc.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_b4cfc.dir/src.cxx.o -o cmTC_b4cfc 
-        gmake[1]: se sale del directorio '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-snFzdi'
+        Run Build Command(s): /usr/bin/ninja -v cmTC_7c26c
+        [1/2] /usr/bin/c++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -o CMakeFiles/cmTC_7c26c.dir/src.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-jPkkBw/src.cxx
+        [2/2] : && /usr/bin/c++   CMakeFiles/cmTC_7c26c.dir/src.cxx.o -o cmTC_7c26c   && :
         
       exitCode: 0
   -
@@ -327,12 +310,12 @@ events:
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:39 (_qt_internal_find_qt_dependencies)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:50 (include)"
       - "/usr/lib/x86_64-linux-gnu/cmake/Qt6/Qt6Config.cmake:167 (find_package)"
-      - "CMakeLists.txt:12 (find_package)"
+      - "CMakeLists.txt:10 (find_package)"
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h"
-      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h"
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-qqDhvc"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-qqDhvc"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -342,17 +325,173 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h'
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-qqDhvc'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ce374/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_ce374.dir/build.make CMakeFiles/cmTC_ce374.dir/build
-        gmake[1]: se entra en el directorio '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h'
-        Building CXX object CMakeFiles/cmTC_ce374.dir/src.cxx.o
-        /usr/bin/c++ -DHAVE_STDATOMIC  -std=gnu++17 -o CMakeFiles/cmTC_ce374.dir/src.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h/src.cxx
-        Linking CXX executable cmTC_ce374
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ce374.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_ce374.dir/src.cxx.o -o cmTC_ce374 
-        gmake[1]: se sale del directorio '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-l4PB0h'
+        Run Build Command(s): /usr/bin/ninja -v cmTC_e8a49
+        [1/2] /usr/bin/c++ -DHAVE_STDATOMIC  -std=gnu++17 -o CMakeFiles/cmTC_e8a49.dir/src.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-qqDhvc/src.cxx
+        [2/2] : && /usr/bin/c++   CMakeFiles/cmTC_e8a49.dir/src.cxx.o -o cmTC_e8a49   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:682 (check_library_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-UVISH8"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-UVISH8"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "X11_LIB_X11_SOLO"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-UVISH8'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_03a1e
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=XOpenDisplay -std=gnu++17 -o CMakeFiles/cmTC_03a1e.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-UVISH8/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=XOpenDisplay  CMakeFiles/cmTC_03a1e.dir/CheckFunctionExists.cxx.o -o cmTC_03a1e  /usr/lib/x86_64-linux-gnu/libX11.so  /usr/lib/x86_64-linux-gnu/libXext.so && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:697 (check_function_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for gethostbyname"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-wUHeAc"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-wUHeAc"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_HAVE_GETHOSTBYNAME"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-wUHeAc'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_60a36
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=gethostbyname -std=gnu++17 -o CMakeFiles/cmTC_60a36.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-wUHeAc/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=gethostbyname  CMakeFiles/cmTC_60a36.dir/CheckFunctionExists.cxx.o -o cmTC_60a36   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:711 (check_function_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for connect"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-lUWjPj"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-lUWjPj"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_HAVE_CONNECT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-lUWjPj'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_a4f1f
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=connect -std=gnu++17 -o CMakeFiles/cmTC_a4f1f.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-lUWjPj/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=connect  CMakeFiles/cmTC_a4f1f.dir/CheckFunctionExists.cxx.o -o cmTC_a4f1f   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:720 (check_function_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for remove"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-nJVGDX"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-nJVGDX"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_HAVE_REMOVE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-nJVGDX'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_fda25
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=remove -std=gnu++17 -o CMakeFiles/cmTC_fda25.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-nJVGDX/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=remove  CMakeFiles/cmTC_fda25.dir/CheckFunctionExists.cxx.o -o cmTC_fda25   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckFunctionExists.cmake:86 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:729 (check_function_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for shmat"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-7xnkqa"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-7xnkqa"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_HAVE_SHMAT"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-7xnkqa'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_687d5
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=shmat -std=gnu++17 -o CMakeFiles/cmTC_687d5.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-7xnkqa/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=shmat  CMakeFiles/cmTC_687d5.dir/CheckFunctionExists.cxx.o -o cmTC_687d5   && :
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindX11.cmake:739 (check_library_exists)"
+      - "CMakeLists.txt:19 (find_package)"
+    checks:
+      - "Looking for IceConnectionNumber in ICE"
+    directories:
+      source: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-IpHz25"
+      binary: "/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-IpHz25"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/usr/lib/x86_64-linux-gnu/cmake/Qt6;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules;/usr/lib/x86_64-linux-gnu/cmake/Qt6/3rdparty/kwin"
+    buildResult:
+      variable: "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER"
+      cached: true
+      stdout: |
+        Change Dir: '/home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-IpHz25'
+        
+        Run Build Command(s): /usr/bin/ninja -v cmTC_ac197
+        [1/2] /usr/bin/c++   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber -std=gnu++17 -o CMakeFiles/cmTC_ac197.dir/CheckFunctionExists.cxx.o -c /home/gcp-tux/Programacion/Linux/C++/OpenSource/AnSoGicScroll/build/CMakeFiles/CMakeScratch/TryCompile-IpHz25/CheckFunctionExists.cxx
+        [2/2] : && /usr/bin/c++ -DCHECK_FUNCTION_EXISTS=IceConnectionNumber  CMakeFiles/cmTC_ac197.dir/CheckFunctionExists.cxx.o -o cmTC_ac197  -lICE && :
         
       exitCode: 0
 ...
