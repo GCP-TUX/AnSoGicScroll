@@ -1,6 +1,5 @@
 build/
 .cache/
-.claude/
 CMakeLists.txt.user
 CMakeLists.txt.user.*
 
