@@ -267,7 +267,7 @@ void TrayApplication::buildMenu()
     connect(screenshotAction, &QAction::triggered, m_screenshotManager, &ScreenshotManager::start);
 
     auto* captureActionWithDesplazamiento =
-        new QAction(tr("&Scrolling screenshot"), this);
+        new QAction(tr("Tomar captura de pantalla con desplazamiento"), this);
     connect(captureActionWithDesplazamiento,
             &QAction::triggered,
             this,

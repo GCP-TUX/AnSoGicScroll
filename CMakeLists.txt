@@ -166,12 +166,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
     set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
     set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-
-    # Dependencias en tiempo de ejecución (ajusta según libs reales que uses)
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS
-        "libqt6core6, libqt6gui6, libqt6widgets6, libopencv-core4.5d | libopencv-core406, libx11-6, libwayland-client0"
-    )
-
     # Genera automáticamente las dependencias reales del binario (recomendado)
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 endif()
