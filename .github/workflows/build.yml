@@ -123,7 +123,10 @@ jobs:
       - name: Importar clave GPG privada
         run: |
           echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf || true
+          mkdir -p ~/.gnupg
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          gpgconf --kill gpg-agent
+          gpgconf --launch gpg-agent
 
       - name: Clonar/crear rama gh-pages
         run: |
@@ -139,10 +142,12 @@ jobs:
       - name: Construir/actualizar repositorio APT
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           REPO_DIR: repo-checkout
         run: |
           chmod +x scripts/publish-apt-repo.sh
           DEB_PATH=$(find dist -name "*.deb" | head -n1)
+          echo "DEB encontrado: ${DEB_PATH}"
           ./scripts/publish-apt-repo.sh "${DEB_PATH}"
 
       - name: Commit y push a gh-pages

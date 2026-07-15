@@ -14,6 +14,7 @@ CODENAME="${CODENAME:-stable}"
 ARCH="${ARCH:-amd64}"
 PKG_NAME="ansogicscroll"
 KEY_ID="${GPG_KEY_ID:?Falta la variable GPG_KEY_ID}"
+GPG_PASSPHRASE="${GPG_PASSPHRASE:?Falta la variable GPG_PASSPHRASE}"
 
 echo "==> Preparando estructura del repo en ${REPO_DIR}"
 POOL_DIR="${REPO_DIR}/pool/main/a/${PKG_NAME}"
@@ -22,11 +23,15 @@ mkdir -p "${POOL_DIR}" "${DIST_DIR}"
 
 echo "==> Copiando paquete .deb al pool"
 cp "${DEB_FILE}" "${POOL_DIR}/"
+echo "==> Contenido de ${POOL_DIR}:"
+ls -la "${POOL_DIR}"
 
 echo "==> Generando Packages / Packages.gz"
 cd "${REPO_DIR}"
 dpkg-scanpackages --arch "${ARCH}" pool/ > "dists/${CODENAME}/main/binary-${ARCH}/Packages"
 gzip -9fk "dists/${CODENAME}/main/binary-${ARCH}/Packages"
+echo "==> Contenido de Packages generado:"
+cat "dists/${CODENAME}/main/binary-${ARCH}/Packages"
 
 echo "==> Generando Release"
 cat > "dists/${CODENAME}/Release" <<EOF
@@ -45,9 +50,11 @@ apt-ftparchive release "dists/${CODENAME}" >> "dists/${CODENAME}/Release"
 
 echo "==> Firmando Release con GPG (KEY_ID=${KEY_ID})"
 rm -f "dists/${CODENAME}/Release.gpg" "dists/${CODENAME}/InRelease"
-gpg --default-key "${KEY_ID}" --batch --yes -abs \
+gpg --pinentry-mode loopback --passphrase "${GPG_PASSPHRASE:-}" \
+    --default-key "${KEY_ID}" --batch --yes -abs \
     -o "dists/${CODENAME}/Release.gpg" "dists/${CODENAME}/Release"
-gpg --default-key "${KEY_ID}" --batch --yes --clearsign \
+gpg --pinentry-mode loopback --passphrase "${GPG_PASSPHRASE:-}" \
+    --default-key "${KEY_ID}" --batch --yes --clearsign \
     -o "dists/${CODENAME}/InRelease" "dists/${CODENAME}/Release"
 
 echo "==> Copiando clave pública al root del repo"
