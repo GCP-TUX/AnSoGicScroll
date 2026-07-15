@@ -10,6 +10,13 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Core DBus)
 find_package(OpenCV REQUIRED)
 
+# --- Windows: evitar que <windows.h> defina macros min/max ----------------
+# Sin esto, cualquier header que incluya <windows.h> antes que OpenCV rompe
+# std::numeric_limits<T>::max() en los headers de OpenCV (error C2589, etc.)
+if(WIN32)
+    add_compile_definitions(NOMINMAX WIN32_LEAN_AND_MEAN)
+endif()
+
 # --- Linux-only: PkgConfig / PipeWire / X11 --------------------------------
 # PkgConfig y libpipewire no existen en Windows/macOS, así que se detectan
 # únicamente en Linux (se usan para el backend de captura vía Wayland/Portal).
@@ -134,58 +141,3 @@ if(UNIX AND NOT APPLE)
     install(FILES resources/linux/ansogicscroll.desktop
             DESTINATION share/applications)
 endif()
-
-# =============================================================
-# Añade esto al final de tu CMakeLists.txt principal
-# =============================================================
-
-include(GNUInstallDirs)
-
-# Instala el ejecutable (ajusta el nombre del target real)
-install(TARGETS AnSoGicScroll
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    BUNDLE  DESTINATION .
-)
-
-# --------------------------------------------------------------
-# Metadatos generales de CPack
-# --------------------------------------------------------------
-set(CPACK_PACKAGE_NAME "AnSoGicScroll")
-set(CPACK_PACKAGE_VENDOR "Gicel Cordoba Pech")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Captura de pantalla con autoscroll inteligente")
-set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
-set(CPACK_PACKAGE_CONTACT "gicel.cordoba@hotmail.com")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
-
-# --------------------------------------------------------------
-# LINUX -> genera .deb para APT
-# --------------------------------------------------------------
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    set(CPACK_GENERATOR "DEB")
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Gicel Cordoba Pech <gicel.cordoba@hotmail.com>")
-    set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
-    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
-    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
-    # Genera automáticamente las dependencias reales del binario (recomendado)
-    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-endif()
-
-# --------------------------------------------------------------
-# WINDOWS -> instalador NSIS
-# --------------------------------------------------------------
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(CPACK_GENERATOR "NSIS")
-    set(CPACK_NSIS_PACKAGE_NAME "AnSoGicScroll")
-    set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
-    set(CPACK_NSIS_MODIFY_PATH ON)
-endif()
-
-# --------------------------------------------------------------
-# MACOS -> imagen .dmg
-# --------------------------------------------------------------
-if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    set(CPACK_GENERATOR "DragNDrop")
-    set(CPACK_DMG_VOLUME_NAME "AnSoGicScroll")
-endif()
-
-include(CPack)
