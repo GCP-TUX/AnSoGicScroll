@@ -71,7 +71,7 @@ jobs:
           version: '6.9.*'
           host: 'windows'
           target: 'desktop'
-          arch: 'win64_msvc2019_64'
+          arch: 'win64_msvc2022_64'
 
       - name: Instalar OpenCV (vcpkg)
         run: |
