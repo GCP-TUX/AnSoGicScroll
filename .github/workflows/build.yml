@@ -1,0 +1,155 @@
+name: Build y Publicar
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v*' ]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - 'docs/**'
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - 'docs/**'
+
+jobs:
+  # ---------------------------------------------------------------------
+  # LINUX (X11 + Wayland) -> genera .deb
+  # ---------------------------------------------------------------------
+  build-linux:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar dependencias del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake ninja-build \
+            qt6-base-dev qt6-base-dev-tools \
+            libgl1-mesa-dev \
+            libxcb-cursor0 libxcb1-dev libx11-dev \
+            libwayland-dev wayland-protocols \
+            libpipewire-0.3-dev \
+            libopencv-dev \
+            pkg-config \
+            file dpkg-dev
+
+      - name: Configurar CMake
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Compilar
+        run: cmake --build build --config Release
+
+      - name: Generar paquete .deb (CPack)
+        run: |
+          cd build
+          cpack -G DEB
+
+      - name: Subir artefacto .deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnSoGicScroll-linux-deb
+          path: build/*.deb
+
+  # ---------------------------------------------------------------------
+  # WINDOWS
+  # ---------------------------------------------------------------------
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.9.*'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+
+      - name: Instalar OpenCV (vcpkg)
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git
+          .\vcpkg\bootstrap-vcpkg.bat
+          .\vcpkg\vcpkg.exe install opencv:x64-windows
+
+      - name: Configurar entorno MSVC (cl.exe, link.exe, etc.)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Instalar Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v4
+
+      - name: Configurar CMake
+        run: cmake -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release
+
+      - name: Compilar
+        run: cmake --build build --config Release
+
+      - name: Subir artefacto (ejecutable)
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnSoGicScroll-windows
+          path: |
+            build/AnSoGicScroll.exe
+            build/*.dll
+
+  # ---------------------------------------------------------------------
+  # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)
+  # ---------------------------------------------------------------------
+  publish-apt-repo:
+    needs: build-linux
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar herramientas de empaquetado
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils gnupg
+
+      - name: Descargar el .deb generado
+        uses: actions/download-artifact@v4
+        with:
+          name: AnSoGicScroll-linux-deb
+          path: dist
+
+      - name: Importar clave GPG privada
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf || true
+
+      - name: Clonar/crear rama gh-pages
+        run: |
+          git fetch origin gh-pages || true
+          git worktree add repo-checkout gh-pages 2>/dev/null || \
+            (mkdir repo-checkout && cd repo-checkout && git init && git checkout -b gh-pages)
+
+      - name: Exportar clave pública al repo
+        run: |
+          gpg --armor --export "${{ secrets.GPG_KEY_ID }}" > pubkey.gpg
+          cp pubkey.gpg repo-checkout/pubkey.gpg
+
+      - name: Construir/actualizar repositorio APT
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          REPO_DIR: repo-checkout
+        run: |
+          chmod +x scripts/publish-apt-repo.sh
+          DEB_PATH=$(find dist -name "*.deb" | head -n1)
+          ./scripts/publish-apt-repo.sh "${DEB_PATH}"
+
+      - name: Commit y push a gh-pages
+        run: |
+          cd repo-checkout
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publicar release ${{ github.ref_name }}" || echo "Sin cambios"
+          git push origin gh-pages
