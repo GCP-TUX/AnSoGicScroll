@@ -79,9 +79,17 @@ jobs:
           .\vcpkg\bootstrap-vcpkg.bat
           .\vcpkg\vcpkg.exe install opencv:x64-windows
 
+      - name: Configurar entorno MSVC (cl.exe, link.exe, etc.)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Instalar Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v4
+
       - name: Configurar CMake
         run: >
-          cmake -B build -G "Visual Studio 17 2022" -A x64
+          cmake -B build -G Ninja
           -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
           -DVCPKG_TARGET_TRIPLET=x64-windows
           -DCMAKE_BUILD_TYPE=Release
@@ -94,8 +102,8 @@ jobs:
         with:
           name: AnSoGicScroll-windows
           path: |
-            build/Release/AnSoGicScroll.exe
-            build/Release/*.dll
+            build/AnSoGicScroll.exe
+            build/*.dll
 
   # ---------------------------------------------------------------------
   # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)
