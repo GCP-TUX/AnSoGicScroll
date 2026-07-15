@@ -140,6 +140,13 @@ if(UNIX AND NOT APPLE)
     install(TARGETS AnSoGicScroll RUNTIME DESTINATION bin)
     install(FILES resources/linux/ansogicscroll.desktop
             DESTINATION share/applications)
+
+    # Instala el ícono en cada resolución del tema hicolor estándar
+    foreach(size 16 24 32 48 64 128 256)
+        install(FILES "resources/linux/icons/${size}x${size}/ansogicscroll.png"
+                DESTINATION "share/icons/hicolor/${size}x${size}/apps"
+                RENAME "ansogicscroll.png")
+    endforeach()
 endif()
 
 # =============================================================
