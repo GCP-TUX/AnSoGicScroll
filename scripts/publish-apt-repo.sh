@@ -28,7 +28,19 @@ ls -la "${POOL_DIR}"
 
 echo "==> Generando Packages / Packages.gz"
 cd "${REPO_DIR}"
-dpkg-scanpackages --arch "${ARCH}" pool/ > "dists/${CODENAME}/main/binary-${ARCH}/Packages"
+echo "==> Directorio actual: $(pwd)"
+echo "==> Buscando .deb dentro de pool/:"
+find pool -type f -name "*.deb"
+
+apt-ftparchive packages pool/ > "dists/${CODENAME}/main/binary-${ARCH}/Packages"
+
+# Verificación: si por algún motivo quedó vacío, fallar explícitamente en vez
+# de publicar un repo APT roto silenciosamente.
+if [ ! -s "dists/${CODENAME}/main/binary-${ARCH}/Packages" ]; then
+    echo "ERROR: el archivo Packages quedó vacío. Abortando." >&2
+    exit 1
+fi
+
 gzip -9fk "dists/${CODENAME}/main/binary-${ARCH}/Packages"
 echo "==> Contenido de Packages generado:"
 cat "dists/${CODENAME}/main/binary-${ARCH}/Packages"
