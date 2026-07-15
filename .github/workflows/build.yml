@@ -71,19 +71,19 @@ jobs:
           version: '6.9.*'
           host: 'windows'
           target: 'desktop'
-          arch: 'win64_mingw'
+          arch: 'win64_msvc2019_64'
 
       - name: Instalar OpenCV (vcpkg)
         run: |
           git clone https://github.com/microsoft/vcpkg.git
           .\vcpkg\bootstrap-vcpkg.bat
-          .\vcpkg\vcpkg.exe install opencv:x64-mingw-dynamic
+          .\vcpkg\vcpkg.exe install opencv:x64-windows
 
       - name: Configurar CMake
         run: >
-          cmake -B build -G Ninja
+          cmake -B build -G "Visual Studio 17 2022" -A x64
           -DCMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake
-          -DVCPKG_TARGET_TRIPLET=x64-mingw-dynamic
+          -DVCPKG_TARGET_TRIPLET=x64-windows
           -DCMAKE_BUILD_TYPE=Release
 
       - name: Compilar
@@ -94,8 +94,8 @@ jobs:
         with:
           name: AnSoGicScroll-windows
           path: |
-            build/AnSoGicScroll.exe
-            build/*.dll
+            build/Release/AnSoGicScroll.exe
+            build/Release/*.dll
 
   # ---------------------------------------------------------------------
   # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)
