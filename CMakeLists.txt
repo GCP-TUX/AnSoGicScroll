@@ -141,3 +141,41 @@ if(UNIX AND NOT APPLE)
     install(FILES resources/linux/ansogicscroll.desktop
             DESTINATION share/applications)
 endif()
+
+# =============================================================
+# CPack: empaquetado (.deb en Linux, instalador NSIS en Windows)
+# =============================================================
+include(GNUInstallDirs)
+
+set(CPACK_PACKAGE_NAME "AnSoGicScroll")
+set(CPACK_PACKAGE_VENDOR "GCP-TUX")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Captura de pantalla con autoscroll inteligente")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_CONTACT "Gicel Cordoba Pech <gicel.cordoba@hotmail.com>")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+
+# --------------------------------------------------------------
+# LINUX -> genera .deb para APT
+# --------------------------------------------------------------
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Gicel Cordoba Pech <gicel.cordoba@hotmail.com>")
+    set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+    set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+    set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+    # Detecta automáticamente las dependencias reales del binario compilado
+    # (Qt6, OpenCV, X11, PipeWire, etc.) inspeccionando los .so enlazados
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+endif()
+
+# --------------------------------------------------------------
+# WINDOWS -> instalador NSIS
+# --------------------------------------------------------------
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(CPACK_GENERATOR "NSIS")
+    set(CPACK_NSIS_PACKAGE_NAME "AnSoGicScroll")
+    set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+    set(CPACK_NSIS_MODIFY_PATH ON)
+endif()
+
+include(CPack)
