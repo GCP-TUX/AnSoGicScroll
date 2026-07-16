@@ -1,44 +1,6 @@
-/*#include "IconFactory.h"
-#include "TrayApplication.h"
+#include <QtGlobal>
 
-#include <QApplication>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
-#include <QTimer>
-#include <cstdlib>
-
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    QApplication::setApplicationName("AnSoGicScroll");
-    QApplication::setApplicationVersion("0.1.0");
-    QApplication::setOrganizationName("AnSoGicScroll");
-    QApplication::setWindowIcon(IconFactory::appIcon());
-
-    // A tray-only application must not quit just because it has no
-    // top-level windows open (dialogs are shown on demand).
-    QApplication::setQuitOnLastWindowClosed(false);
-
-    if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-        QMessageBox::critical(nullptr, QObject::tr("AnSoGicScroll"),
-                               QObject::tr("No se encontro una bandeja del sistema en este "
-                                           "entorno de escritorio. La aplicacion no puede "
-                                           "continuar."));
-        return 1;
-    }
-
-    TrayApplication trayApplication;
-
-    // TEMPORARY manual test hook, removed once the overlay is verified.
-    if (std::getenv("ANSOGICSCROLL_TEST_CAPTURE")) {
-        QTimer::singleShot(500, &trayApplication, &TrayApplication::debugTriggerScreenshot);
-    }
-
-    return QApplication::exec();
-}
-*/
-
-#if defined(_WIN32)
+#if defined(Q_OS_WIN)
 // Debe definirse ANTES de incluir <windows.h> para que declare
 // SetProcessDpiAwarenessContext (disponible desde Windows 10 1703+).
 #ifndef _WIN32_WINNT
@@ -57,7 +19,7 @@ int main(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-#if defined(_WIN32)
+#if defined(Q_OS_WIN)
     // Declara el proceso como "Per-Monitor DPI Aware V2" ANTES de crear
     // QApplication. Sin esto, Windows trata el proceso como no consciente
     // de DPI y "virtualiza" las coordenadas que devuelven las llamadas
