@@ -582,7 +582,7 @@ QRect TrayApplication::selectScrollRegionFromImage(const QImage& screenshot)
             return;
         }
 
-        selector->show();
+        selector->showFullScreen();
         selector->raise();
         selector->activateWindow();
         selector->setFocus(Qt::ActiveWindowFocusReason);
