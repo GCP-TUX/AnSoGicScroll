@@ -147,6 +147,12 @@ if(UNIX AND NOT APPLE)
                 DESTINATION "share/icons/hicolor/${size}x${size}/apps"
                 RENAME "ansogicscroll.png")
     endforeach()
+
+    # Regla udev para /dev/uinput (autoscroll en X11). Se instala como
+    # archivo del paquete; los scripts postinst/%post además la reescriben
+    # y recargan udev automáticamente al instalar.
+    install(FILES resources/linux/udev/99-ansogicscroll-uinput.rules
+            DESTINATION /etc/udev/rules.d)
 endif()
 
 # =============================================================
@@ -175,6 +181,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Detecta automáticamente las dependencias reales del binario compilado
     # (Qt6, OpenCV, X11, PipeWire, etc.) inspeccionando los .so enlazados
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+    # Scripts post-instalación/desinstalación: configuran udev + grupo
+    # 'input' automáticamente para que el autoscroll en X11 funcione sin
+    # pasos manuales del usuario.
+    set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA
+        "${CMAKE_SOURCE_DIR}/scripts/packaging/postinst;${CMAKE_SOURCE_DIR}/scripts/packaging/postrm")
 
     # --- .rpm ---
     set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
@@ -183,6 +194,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
     # Equivalente de SHLIBDEPS para RPM: detecta dependencias automáticamente
     set(CPACK_RPM_PACKAGE_AUTOREQPROV ON)
+    # Mismo propósito que CONTROL_EXTRA arriba, pero en formato RPM
+    set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/scripts/packaging/rpm-post.sh")
+    set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/scripts/packaging/postrm")
 endif()
 
 # --------------------------------------------------------------

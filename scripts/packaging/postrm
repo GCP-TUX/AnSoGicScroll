@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove|purge)
+        rm -f /etc/udev/rules.d/99-ansogicscroll-uinput.rules
+        rm -f /etc/modules-load.d/ansogicscroll-uinput.conf
+        if command -v udevadm >/dev/null 2>&1; then
+            udevadm control --reload-rules || true
+        fi
+        ;;
+esac
+
+exit 0
