@@ -67,6 +67,8 @@ chmod +x AnSoGicScroll-x86_64.AppImage
 ./AnSoGicScroll-x86_64.AppImage
 ```
 
+> **Note (Linux, X11 auto-scroll):** on the first install via APT or DNF, the package automatically grants your user access to `/dev/uinput` (required for simulating scroll events on X11) by adding you to the `input` group. This only takes effect after you **log out and back in** (or reboot) — a one-time step required by Linux itself, not something the installer can skip. If auto-scroll shows a "could not access /dev/uinput" error right after installing, just log out/in once and it will work. This step is not needed on Wayland.
+
 ### Windows
 
 Download the latest `.zip` or installer from the [Releases](https://github.com/GCP-TUX/AnSoGicScroll/releases) page.
