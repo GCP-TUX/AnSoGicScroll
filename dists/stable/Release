@@ -5,21 +5,21 @@ Codename: stable
 Architectures: amd64
 Components: main
 Description: Repositorio APT de AnSoGicScroll
-Date: Thu, 16 Jul 2026 01:12:01 +0000
-Date: Thu, 16 Jul 2026 01:12:01 +0000
+Date: Thu, 16 Jul 2026 01:29:31 +0000
+Date: Thu, 16 Jul 2026 01:29:31 +0000
 MD5Sum:
- b63dbc0bee8125ced266aabb398f9c10              234 Release
- 0b835036cac35665737f543f8c86b285              951 main/binary-amd64/Packages
- 8803afddc6ec984e7ffc75f9bfbed7f1              585 main/binary-amd64/Packages.gz
+ bd08a8f9e469b4ad77e89c32c9685893              234 Release
+ 4a5ea0abc64adbcc542c54801e4f1eff              951 main/binary-amd64/Packages
+ 1d7ad5ff65afc1f02d4cceea31a33344              585 main/binary-amd64/Packages.gz
 SHA1:
- d9e3424458be26afd8092315f70104c4e1ff3f37              234 Release
- ff96a42b3d55850a3c9190afe2edd7f441a6d276              951 main/binary-amd64/Packages
- 100bac923c0b3d4b77c1463bbf7c8af7386ed026              585 main/binary-amd64/Packages.gz
+ 9227a15484f220f12761803664f41e00f6225482              234 Release
+ 7314d622dfcc4f76443fe3ea2b4c054b65e3372f              951 main/binary-amd64/Packages
+ ee2464aeabaae1337a05c84c713c2d34a9f7e1a4              585 main/binary-amd64/Packages.gz
 SHA256:
- cef0c2f3284466fa47ef0bd3ee69929dade54a134b8b58c8937532a01648a597              234 Release
- 9da2857e487ed5998ff3ec42861a9423a0508ff8b26dd6a434a8c11aea92b7fc              951 main/binary-amd64/Packages
- 38293b987ca3c942070a77ca92fee1656dd09de783a444f6081b1f3d1f011580              585 main/binary-amd64/Packages.gz
+ 0636d305518a95c349f7533fc6a85bdb21f0bff7ad5ae153afad6fe1faedfe97              234 Release
+ 6638adc1b7a030fb9e6b5a17fa918c74e63fc2f3a35491fdb0eeda73a80f6ee6              951 main/binary-amd64/Packages
+ b29725d97b9603a0c4a5e1d0f7f80aabcc3e8edbd2e7c3974e1b321607c94947              585 main/binary-amd64/Packages.gz
 SHA512:
- 56ca59607a92112871bd4ad0c5b5cddfcebce38ce4f3441234de8e1dd7704e59a0e46440cc13e019a111b44b3a7b956580db988f0576d7f6b6a8f4eef9302c3c              234 Release
- 45675f13bca2bcc63d5c1f8a018655509cd5f76558aadd49b7a7827d260a5cd168f9db38b269ff509fbe9154e08825b87290718d536f405362634836d5a05d30              951 main/binary-amd64/Packages
- dd5507af127c5106d663bd72e6f413c58a1bc21366b4f39530d5c5ea815b2955fbade759c1671b0e9dabfee4bf9464c521486fa40ebc71a8fac41787109dc92c              585 main/binary-amd64/Packages.gz
+ bd347e04c98b54b1169049f05fcf154e99a1171738b98089d5ceeac8552c03616d7a13d1f39c22f44947799e9dc10252573a706693babba9a37a2064289ff34b              234 Release
+ 91cdfae390270a879cd5833ab54d085618e5a4435c3556ef93ff430554f15b93d619fdb9f4c592d6c176b1a2de3404f855d60fd1843e8880a00e94a2b4d1be10              951 main/binary-amd64/Packages
+ 71ba31758a6454f86a9932f442bb3d96ea4db1d4b871918733ebe4fb91f9d81f527a0deb3e0943e72fa66948a8074ad5332eaeda7855dd03410c31eabb2f22c3              585 main/binary-amd64/Packages.gz
