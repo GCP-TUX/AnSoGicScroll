@@ -10,10 +10,11 @@ set -euo pipefail
 
 REPO_DIR="${REPO_DIR:-repo}"
 RPM_FILE="${1:?Uso: publish-rpm-repo.sh <ruta-al-archivo.rpm>}"
+FEDORA_VER="${FEDORA_VER:?Falta la variable FEDORA_VER}"
 KEY_ID="${GPG_KEY_ID:?Falta la variable GPG_KEY_ID}"
 GPG_PASSPHRASE="${GPG_PASSPHRASE:?Falta la variable GPG_PASSPHRASE}"
 
-RPM_DIR="${REPO_DIR}/rpm"
+RPM_DIR="${REPO_DIR}/rpm/${FEDORA_VER}"
 
 echo "==> Preparando estructura del repo RPM en ${RPM_DIR}"
 mkdir -p "${RPM_DIR}"

@@ -1,6 +1,6 @@
 [ansogicscroll]
 name=AnSoGicScroll
-baseurl=https://gcp-tux.github.io/AnSoGicScroll/rpm
+baseurl=https://gcp-tux.github.io/AnSoGicScroll/rpm/$releasever
 enabled=1
 gpgcheck=0
 repo_gpgcheck=1

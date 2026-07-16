@@ -111,8 +111,12 @@ jobs:
   # correctos de Fedora/DNF en vez de los de Ubuntu/APT)
   # ---------------------------------------------------------------------
   build-fedora:
+    strategy:
+      fail-fast: false
+      matrix:
+        fedora_version: [41, 42]
     runs-on: ubuntu-latest
-    container: fedora:40
+    container: fedora:${{ matrix.fedora_version }}
     steps:
       - name: Instalar git (necesario para checkout dentro del contenedor)
         run: dnf install -y git
@@ -146,7 +150,7 @@ jobs:
       - name: Subir artefacto .rpm
         uses: actions/upload-artifact@v4
         with:
-          name: AnSoGicScroll-fedora-rpm
+          name: AnSoGicScroll-fedora-rpm-${{ matrix.fedora_version }}
           path: build/*.rpm
 
   # ---------------------------------------------------------------------
@@ -225,11 +229,17 @@ jobs:
           name: AnSoGicScroll-linux-deb-jammy
           path: dist-jammy
 
-      - name: Descargar el .rpm generado
+      - name: Descargar el .rpm (Fedora 41)
         uses: actions/download-artifact@v4
         with:
-          name: AnSoGicScroll-fedora-rpm
-          path: dist-rpm
+          name: AnSoGicScroll-fedora-rpm-41
+          path: dist-rpm-41
+
+      - name: Descargar el .rpm (Fedora 42)
+        uses: actions/download-artifact@v4
+        with:
+          name: AnSoGicScroll-fedora-rpm-42
+          path: dist-rpm-42
 
       - name: Importar clave GPG privada
         run: |
@@ -275,15 +285,28 @@ jobs:
           echo "DEB (jammy) encontrado: ${DEB_PATH}"
           ./scripts/publish-apt-repo.sh "${DEB_PATH}"
 
-      - name: Construir/actualizar repositorio RPM
+      - name: Construir/actualizar repositorio RPM (Fedora 41)
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           REPO_DIR: repo-checkout
+          FEDORA_VER: "41"
         run: |
           chmod +x scripts/publish-rpm-repo.sh
-          RPM_PATH=$(find dist-rpm -name "*.rpm" | head -n1)
-          echo "RPM encontrado: ${RPM_PATH}"
+          RPM_PATH=$(find dist-rpm-41 -name "*.rpm" | head -n1)
+          echo "RPM (Fedora 41) encontrado: ${RPM_PATH}"
+          ./scripts/publish-rpm-repo.sh "${RPM_PATH}"
+
+      - name: Construir/actualizar repositorio RPM (Fedora 42)
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          REPO_DIR: repo-checkout
+          FEDORA_VER: "42"
+        run: |
+          chmod +x scripts/publish-rpm-repo.sh
+          RPM_PATH=$(find dist-rpm-42 -name "*.rpm" | head -n1)
+          echo "RPM (Fedora 42) encontrado: ${RPM_PATH}"
           ./scripts/publish-rpm-repo.sh "${RPM_PATH}"
 
       - name: Commit y push a gh-pages
