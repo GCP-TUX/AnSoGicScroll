@@ -7,11 +7,13 @@
 
 #if defined( Q_OS_WIN )
 #include <dwmapi.h>
+#include <shellscalingapi.h>
 #endif
 
 #if defined( Q_OS_WIN )
 #include <qwindowdefs_win.h>
 #include <dwmapi.h>
+#include <shellscalingapi.h>
 #endif
 
 static constexpr QColor BORDER_COLOR(136, 0, 170, 255);
@@ -144,6 +146,44 @@ QRect WindowHighlightOverlay::getWindowUnderCursor() const
 
     // Optional fine adjustment to avoid clipping borders
     rect = rect.adjusted(1, 1, -1, -1);
+
+    // --- DPI fix -----------------------------------------------------
+    // GetWindowRect/DwmGetWindowAttribute return PHYSICAL pixel
+    // coordinates (now that the process is declared per-monitor DPI
+    // aware in main.cpp). Qt widgets, however, are always positioned
+    // and sized in LOGICAL pixels (QScreen::geometry(), QWidget's own
+    // geometry() used elsewhere to build this overlay). On a display
+    // at 100% scaling both spaces coincide, which is why this worked
+    // fine in a VM; on a real laptop with 125%/150% scaling they
+    // diverge, causing the highlight rectangle to appear offset/wrong
+    // sized. Convert physical -> logical here so downstream code
+    // (paintEvent, which mixes this rect with this widget's own
+    // logical-pixel geometry) works in a single, consistent space.
+    //
+    // Deliberately use the DPI of the *monitor* (GetDpiForMonitor) that
+    // the target window is on, not GetDpiForWindow(hwnd). The latter
+    // depends on whether the *target* application itself declares
+    // per-monitor DPI awareness — for third-party apps that don't
+    // (common), Windows can report a virtualized DPI for that window
+    // that doesn't match the real monitor scale, producing a
+    // wrong-sized (not just offset) highlight rectangle. The monitor's
+    // DPI is always the true physical value, independent of how the
+    // target app handles DPI itself.
+    HMONITOR hMonitor = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
+    UINT dpiX = 96;
+    UINT dpiY = 96;
+    if (!hMonitor || FAILED(GetDpiForMonitor(hMonitor, MDT_EFFECTIVE_DPI, &dpiX, &dpiY))) {
+        dpiX = 96;
+    }
+    const qreal scale = static_cast<qreal>(dpiX) / 96.0;
+
+    if (!qFuzzyCompare(scale, 1.0)) {
+        rect = QRect(
+            qRound(rect.x() / scale),
+            qRound(rect.y() / scale),
+            qRound(rect.width() / scale),
+            qRound(rect.height() / scale));
+    }
 
     return rect;
 }
