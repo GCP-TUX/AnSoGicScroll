@@ -24,11 +24,11 @@ public:
 
 
     HWND selectedWindow() const { return selectedHwnd_; }
-#endif
+
 
     static void setOverlayWindowMouseBlocking( QWidget* );
     static void blockMouseEventsOn(QWidget* );
-
+#endif
 signals:
 #if defined( Q_OS_WIN )
     void panelSelected(HWND hwnd);  // Emitted on mouse click
