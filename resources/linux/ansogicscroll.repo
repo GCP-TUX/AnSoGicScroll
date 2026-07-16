@@ -1,0 +1,7 @@
+[ansogicscroll]
+name=AnSoGicScroll
+baseurl=https://gcp-tux.github.io/AnSoGicScroll/rpm
+enabled=1
+gpgcheck=0
+repo_gpgcheck=1
+gpgkey=https://gcp-tux.github.io/AnSoGicScroll/pubkey.gpg

@@ -22,7 +22,15 @@ jobs:
   # LINUX (X11 + Wayland) -> genera .deb
   # ---------------------------------------------------------------------
   build-linux:
-    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            codename: noble
+          - os: ubuntu-22.04
+            codename: jammy
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
 
@@ -54,8 +62,43 @@ jobs:
       - name: Subir artefacto .deb
         uses: actions/upload-artifact@v4
         with:
-          name: AnSoGicScroll-linux-deb
+          name: AnSoGicScroll-linux-deb-${{ matrix.codename }}
           path: build/*.deb
+
+      - name: Descargar linuxdeploy y su plugin de Qt
+        if: matrix.codename == 'noble'
+        run: |
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage linuxdeploy-plugin-qt-x86_64.AppImage
+
+      - name: Construir AppImage
+        if: matrix.codename == 'noble'
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: "1"
+        run: |
+          mkdir -p AppDir
+          export QMAKE=$(which qmake6)
+          ./linuxdeploy-x86_64.AppImage \
+            --appdir AppDir \
+            --executable build/AnSoGicScroll \
+            --desktop-file resources/linux/ansogicscroll.desktop \
+            --icon-file resources/linux/icons/256x256/ansogicscroll.png \
+            --plugin qt \
+            --output appimage
+
+      - name: Renombrar AppImage
+        if: matrix.codename == 'noble'
+        run: |
+          mv AnSoGicScroll*.AppImage AnSoGicScroll-x86_64.AppImage
+          chmod +x AnSoGicScroll-x86_64.AppImage
+
+      - name: Subir artefacto AppImage
+        if: matrix.codename == 'noble'
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnSoGicScroll-appimage
+          path: AnSoGicScroll-x86_64.AppImage
 
   # ---------------------------------------------------------------------
   # FEDORA -> genera .rpm con dependencias nativas de Fedora
@@ -157,20 +200,32 @@ jobs:
   # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)
   # ---------------------------------------------------------------------
   publish-apt-repo:
-    needs: build-linux
+    needs: [build-linux, build-fedora]
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Instalar herramientas de empaquetado
-        run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils gnupg
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev apt-utils gnupg createrepo-c
 
-      - name: Descargar el .deb generado
+      - name: Descargar el .deb (noble / Ubuntu 24.04)
         uses: actions/download-artifact@v4
         with:
-          name: AnSoGicScroll-linux-deb
-          path: dist
+          name: AnSoGicScroll-linux-deb-noble
+          path: dist-noble
+
+      - name: Descargar el .deb (jammy / Ubuntu 22.04)
+        uses: actions/download-artifact@v4
+        with:
+          name: AnSoGicScroll-linux-deb-jammy
+          path: dist-jammy
+
+      - name: Descargar el .rpm generado
+        uses: actions/download-artifact@v4
+        with:
+          name: AnSoGicScroll-fedora-rpm
+          path: dist-rpm
 
       - name: Importar clave GPG privada
         run: |
@@ -192,16 +247,40 @@ jobs:
           gpg --armor --export "${{ secrets.GPG_KEY_ID }}" > pubkey.gpg
           cp pubkey.gpg repo-checkout/pubkey.gpg
 
-      - name: Construir/actualizar repositorio APT
+      - name: Construir/actualizar repositorio APT (noble / Ubuntu 24.04)
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          REPO_DIR: repo-checkout
+          CODENAME: stable
+        run: |
+          chmod +x scripts/publish-apt-repo.sh
+          DEB_PATH=$(find dist-noble -name "*.deb" | head -n1)
+          echo "DEB (noble) encontrado: ${DEB_PATH}"
+          ./scripts/publish-apt-repo.sh "${DEB_PATH}"
+
+      - name: Construir/actualizar repositorio APT (jammy / Ubuntu 22.04)
+        env:
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          REPO_DIR: repo-checkout
+          CODENAME: jammy
+        run: |
+          chmod +x scripts/publish-apt-repo.sh
+          DEB_PATH=$(find dist-jammy -name "*.deb" | head -n1)
+          echo "DEB (jammy) encontrado: ${DEB_PATH}"
+          ./scripts/publish-apt-repo.sh "${DEB_PATH}"
+
+      - name: Construir/actualizar repositorio RPM
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           REPO_DIR: repo-checkout
         run: |
-          chmod +x scripts/publish-apt-repo.sh
-          DEB_PATH=$(find dist -name "*.deb" | head -n1)
-          echo "DEB encontrado: ${DEB_PATH}"
-          ./scripts/publish-apt-repo.sh "${DEB_PATH}"
+          chmod +x scripts/publish-rpm-repo.sh
+          RPM_PATH=$(find dist-rpm -name "*.rpm" | head -n1)
+          echo "RPM encontrado: ${RPM_PATH}"
+          ./scripts/publish-rpm-repo.sh "${RPM_PATH}"
 
       - name: Commit y push a gh-pages
         run: |

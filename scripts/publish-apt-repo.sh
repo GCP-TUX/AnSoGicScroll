@@ -17,7 +17,7 @@ KEY_ID="${GPG_KEY_ID:?Falta la variable GPG_KEY_ID}"
 GPG_PASSPHRASE="${GPG_PASSPHRASE:?Falta la variable GPG_PASSPHRASE}"
 
 echo "==> Preparando estructura del repo en ${REPO_DIR}"
-POOL_DIR="${REPO_DIR}/pool/main/a/${PKG_NAME}"
+POOL_DIR="${REPO_DIR}/pool/${CODENAME}/main/a/${PKG_NAME}"
 DIST_DIR="${REPO_DIR}/dists/${CODENAME}/main/binary-${ARCH}"
 mkdir -p "${POOL_DIR}" "${DIST_DIR}"
 
@@ -29,10 +29,10 @@ ls -la "${POOL_DIR}"
 echo "==> Generando Packages / Packages.gz"
 cd "${REPO_DIR}"
 echo "==> Directorio actual: $(pwd)"
-echo "==> Buscando .deb dentro de pool/:"
-find pool -type f -name "*.deb"
+echo "==> Buscando .deb dentro de pool/${CODENAME}/:"
+find "pool/${CODENAME}" -type f -name "*.deb"
 
-apt-ftparchive packages pool/ > "dists/${CODENAME}/main/binary-${ARCH}/Packages"
+apt-ftparchive packages "pool/${CODENAME}/" > "dists/${CODENAME}/main/binary-${ARCH}/Packages"
 
 # Verificación: si por algún motivo quedó vacío, fallar explícitamente en vez
 # de publicar un repo APT roto silenciosamente.

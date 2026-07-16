@@ -4,3 +4,9 @@ CMakeLists.txt.user
 CMakeLists.txt.user.*
 
 repo-checkout/
+
+# Artefactos temporales de builds locales de AppImage/RPM
+AppDir/
+*.AppImage
+linuxdeploy-*.AppImage
+repo-checkout/

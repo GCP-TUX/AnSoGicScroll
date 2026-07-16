@@ -11,27 +11,32 @@ A cross-platform screenshot tool with **smart auto-scroll capture**: it captures
 | Windows | ✅ Supported |
 | macOS | 🚧 Coming soon |
 
-## Demo
-
-### Linux (X11)
-[![Linux X11 demo](https://img.youtube.com/vi/nu78ZcpUBis/maxresdefault.jpg)](https://www.youtube.com/watch?v=nu78ZcpUBis)
-
-### Linux (Wayland)
-[![Linux Wayland demo](https://img.youtube.com/vi/GsLFDsY_g1k/maxresdefault.jpg)](https://www.youtube.com/watch?v=GsLFDsY_g1k)
-
-### Windows
-[![Windows demo](https://img.youtube.com/vi/YBKilkOGQpA/maxresdefault.jpg)](https://www.youtube.com/watch?v=YBKilkOGQpA)
-
 ## Installation
 
-### Linux (via APT)
+### Linux — Debian / Ubuntu 24.04+ (via APT)
 
 ```bash
-curl -fsSL https://GCP-TUX.github.io/AnSoGicScroll/pubkey.gpg | \
+curl -fsSL https://gcp-tux.github.io/AnSoGicScroll/pubkey.gpg | \
     sudo gpg --dearmor -o /usr/share/keyrings/ansogicscroll.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/ansogicscroll.gpg] \
-https://GCP-TUX.github.io/AnSoGicScroll stable main" | \
+https://gcp-tux.github.io/AnSoGicScroll stable main" | \
+    sudo tee /etc/apt/sources.list.d/ansogicscroll.list
+
+sudo apt update
+sudo apt install ansogicscroll
+```
+
+### Linux — Ubuntu 22.04 (via APT)
+
+Same as above, but use `jammy` instead of `stable`:
+
+```bash
+curl -fsSL https://gcp-tux.github.io/AnSoGicScroll/pubkey.gpg | \
+    sudo gpg --dearmor -o /usr/share/keyrings/ansogicscroll.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/ansogicscroll.gpg] \
+https://gcp-tux.github.io/AnSoGicScroll jammy main" | \
     sudo tee /etc/apt/sources.list.d/ansogicscroll.list
 
 sudo apt update
@@ -39,6 +44,28 @@ sudo apt install ansogicscroll
 ```
 
 See [INSTALL_APT.md](INSTALL_APT.md) for more details.
+
+### Linux — Fedora (via DNF)
+
+```bash
+sudo curl -fsSL https://gcp-tux.github.io/AnSoGicScroll/pubkey.gpg \
+    -o /etc/pki/rpm-gpg/RPM-GPG-KEY-ansogicscroll
+
+sudo curl -fsSL https://raw.githubusercontent.com/GCP-TUX/AnSoGicScroll/master/resources/linux/ansogicscroll.repo \
+    -o /etc/yum.repos.d/ansogicscroll.repo
+
+sudo dnf install ansogicscroll
+```
+
+### Linux — any distro (AppImage)
+
+No installation or root access required:
+
+```bash
+wget https://github.com/GCP-TUX/AnSoGicScroll/releases/latest/download/AnSoGicScroll-x86_64.AppImage
+chmod +x AnSoGicScroll-x86_64.AppImage
+./AnSoGicScroll-x86_64.AppImage
+```
 
 ### Windows
 
