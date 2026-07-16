@@ -1,0 +1,16 @@
+Package: ansogicscroll
+Architecture: amd64
+Version: 0.1.0
+Priority: optional
+Section: utils
+Maintainer: Gicel Cordoba Pech <gicel.cordoba@hotmail.com>
+Installed-Size: 604
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libopencv-core4.5d (>= 4.5.4+dfsg), libopencv-imgcodecs4.5d (>= 4.5.4+dfsg), libopencv-imgproc4.5d (>= 4.5.4+dfsg), libpipewire-0.3-0 (>= 0.3.1), libqt6core6 (>= 6.2.0), libqt6dbus6 (>= 6.1.2), libqt6gui6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libstdc++6 (>= 9), libx11-6
+Filename: pool/jammy/main/a/ansogicscroll/AnSoGicScroll-0.1.0-Linux.deb
+Size: 244570
+MD5sum: 5ce6b9dd5d53e34d4e2a5526de307464
+SHA1: 56b3c725c008deb393a7f7df637e625a163b2366
+SHA256: fa7046167e7ad268e3f55e3cab901dd364a8bbc3e782f18799c844c3819b1dc6
+SHA512: 3de39be1817a1c456e10bfabd004c5011aa84d09018f37a155895c9d18d51fd2efa65f19030bcdf7ccd0d22c9210470a07183b6e0ddaf167ce7ace086226d1ba
+Description: Captura de pantalla con autoscroll inteligente
+

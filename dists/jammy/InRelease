@@ -1,0 +1,44 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: AnSoGicScroll
+Label: AnSoGicScroll
+Suite: jammy
+Codename: jammy
+Architectures: amd64
+Components: main
+Description: Repositorio APT de AnSoGicScroll
+Date: Thu, 16 Jul 2026 11:49:35 +0000
+Date: Thu, 16 Jul 2026 11:49:35 +0000
+MD5Sum:
+ 7985fde9a4cafd04595ab13569c4abc0              232 Release
+ 4560bef5a1e48d6b25a7d0d68e1cb16d              933 main/binary-amd64/Packages
+ 33317e758a503c1a33164508b42aa865              588 main/binary-amd64/Packages.gz
+SHA1:
+ db42070a553e062921ca55b58295296229124f74              232 Release
+ 3436bc972952e7886f0389dac81acd6e755b6bc2              933 main/binary-amd64/Packages
+ 8c4d95dd6f2898637a1d08ef1089ee2d584922f6              588 main/binary-amd64/Packages.gz
+SHA256:
+ c1b98d6ab5c453116bad9bedc459f3d7b9b35c0934de66efb7227a2e700cb664              232 Release
+ 6f81e161ba89519188718dca0958da45d7f6671e60f1e61cdcf10a2fd20cf910              933 main/binary-amd64/Packages
+ dc3bdada3c8bb4c9178c6f03bb56bbc947140e4c4ebe18f81a3b24dc0e209870              588 main/binary-amd64/Packages.gz
+SHA512:
+ fe5540ca147d00105e24f563b344177508393f6956ed2f1e8dcb4471e4e5c0dadf0e5b76307b2906f64e048f84c0c15c17a451ee3d9ff575ddca02190a1b3368              232 Release
+ 7b433fab773a7ab24f4864b31b1752808c521ad31032ee88fe5fed8d8b98fb7fdcabd4f92266d03145b4b8d2597aab264ee43b1c1529dda3a005727814d114d2              933 main/binary-amd64/Packages
+ 729d6fc86213b5090284ccc1bb52e302670993c93ae92219cd7c7f84e6375dc30dcda38115441e0296ed0e6b2236ab5316159f58026b18f55d8aaf2712aa67dd              588 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEUm/kEF90cISUfBbgkGXVzB8etDoFAmpYxVAACgkQkGXVzB8e
+tDra2Q/8CUbvdR/zetu5y0HinAVF/0nGshaAsA8Q7YrC8oeNYHZ4ooZFsk+iizai
+YJkYicca3S0mfA+L/GlNMmIE50heZ0Ty0tncV0ieMfA+lya92c+Ksa+PHQwCm9Ps
+Z5zhvIAFjNmuHVYZAID1Y0Ov8lA5Jz/48thd/Z9TtFOgr9eieHk+fGYQEEBFGnMO
+D3h0f1yL4e1s9bn9NJQzK+Iu9Y/IR8J7+yR94ERgyRO/7D+w1WPxtZPYHYiMizmF
+IfX3088sl5ccPRvoM0BDnsN+kABsWODf/ZXyyNeKlCkalkCXC6y0v82QfwpiAKKz
+aT6o7b0sEU80HioQilkfueXItqZ+xS2jPSb2JHn8zoDGP3bzZZJjJ2YCpqpxGhJ0
+0j4BexMmEuy9cYG2QyUARqs84AzztD4W2+YPX2/CT3NSzwaK0oX60bU9JroeUzT0
+LAq8f+L6eKbU6lqGGccTIldYvccq107GWHIxCtXBIz1OKKOMtC96eL7iQaG7AWkd
+6m8aKi+5C14FZKUBMX9vS+5Oct+S0o4pdx+X9a+WQsWcSBYfZ5lTWv2c4Ir1oRuP
+AZOFWUkj8yIMpdGtP1Ks6e0LEA9RdpkkYISjo0OX5jKj3cBE+zbDo3c2IgNSk0EG
+HMkavd5wh9oSfqB4dkwr1y2nVdPPGoB37oD2XpeCoNaFJptNsIo=
+=XTln
+-----END PGP SIGNATURE-----
