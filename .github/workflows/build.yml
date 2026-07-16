@@ -90,7 +90,11 @@ jobs:
       - name: Renombrar AppImage
         if: matrix.codename == 'noble'
         run: |
-          mv AnSoGicScroll*.AppImage AnSoGicScroll-x86_64.AppImage
+          APPIMAGE_FILE=$(ls AnSoGicScroll*.AppImage)
+          echo "Archivo generado: ${APPIMAGE_FILE}"
+          if [ "${APPIMAGE_FILE}" != "AnSoGicScroll-x86_64.AppImage" ]; then
+            mv "${APPIMAGE_FILE}" AnSoGicScroll-x86_64.AppImage
+          fi
           chmod +x AnSoGicScroll-x86_64.AppImage
 
       - name: Subir artefacto AppImage
