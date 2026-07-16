@@ -8,9 +8,9 @@ Installed-Size: 616
 Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libopencv-core4.5d (>= 4.5.4+dfsg), libopencv-imgcodecs4.5d (>= 4.5.4+dfsg), libopencv-imgproc4.5d (>= 4.5.4+dfsg), libpipewire-0.3-0 (>= 0.3.1), libqt6core6 (>= 6.2.0), libqt6dbus6 (>= 6.1.2), libqt6gui6 (>= 6.1.2), libqt6widgets6 (>= 6.1.2), libstdc++6 (>= 9), libx11-6
 Filename: pool/jammy/main/a/ansogicscroll/AnSoGicScroll-0.1.0-Linux.deb
 Size: 245662
-MD5sum: 3fc71d72492b7ffbd3ad8b7222d3c835
-SHA1: 1b5b2e86bd33ad91999038d319f40ab25b6e73c3
-SHA256: ac5abe950d03cecf69b7b36eeff572517f9253708c758f7543d60f70702adbf6
-SHA512: dc9f1291105437f943cbb95bfddc78e4ab599b23657a26569a4abf5067023a73a34fd44e02fb832fb0ef37719d51b33d9677b71ea4dacea81f4f1cd392650bc0
+MD5sum: fb312ad7513c171ad2be5e4f408a0aac
+SHA1: 45fb53ca62d9521115a75a59937ac5cac26b1ce2
+SHA256: 5ea64eb33dbbfd461fc4ba13b4ddb8960a23bc9339ddbac512dbe35c41f83065
+SHA512: 94ce75d6e9f60224d0b84a31c1ded9ce142ecaba4e2c150a6912a975e2c7f56c6adfff07d0feec89b9f1acff84204c8784bb03a079ec2e549387a387a6e8f8c3
 Description: Captura de pantalla con autoscroll inteligente
 

@@ -5,21 +5,21 @@ Codename: jammy
 Architectures: amd64
 Components: main
 Description: Repositorio APT de AnSoGicScroll
-Date: Thu, 16 Jul 2026 17:12:57 +0000
-Date: Thu, 16 Jul 2026 17:12:57 +0000
+Date: Thu, 16 Jul 2026 17:22:00 +0000
+Date: Thu, 16 Jul 2026 17:22:00 +0000
 MD5Sum:
- 8ff4711d6d7faa65a31e028ddb6bc125              232 Release
- f28449d554fbddfc8f505c2eb612810d              933 main/binary-amd64/Packages
- a16e7f60183ce422ee4b8d3d9210c155              589 main/binary-amd64/Packages.gz
+ 532ae056d4f3d0a689f7b0b50cc8aad1              232 Release
+ be20d2e5d3362cb5bbb85f319d654002              933 main/binary-amd64/Packages
+ c697cca741608750e5a1fb545f6277b5              585 main/binary-amd64/Packages.gz
 SHA1:
- dfa39ed4325917a06ec0ee6c680637f974ab68ee              232 Release
- b0c7a4de30a6146eff2aecdeb3e761734425a41c              933 main/binary-amd64/Packages
- fcd71f151f9c4691303a7666255ae958103cee44              589 main/binary-amd64/Packages.gz
+ cf48784c52ff94397e854d3b60bdaed8499f9456              232 Release
+ 807365386af206cb58a7c5d8f17d74f2fd60808e              933 main/binary-amd64/Packages
+ 663641332be87806b9e0cdc111db0d25b6ab82a0              585 main/binary-amd64/Packages.gz
 SHA256:
- e81a07d71ffe13215e2ccff662dbe338e158e9e1348c4562d9845635f23428ba              232 Release
- b235437767cb272b71299c70a427f356c368a836af9d2aea4f74625e34e48623              933 main/binary-amd64/Packages
- b61ff93e3483f50fdc3b55a50d5517690dac854cf64d4b0b0ad93022d0dd243c              589 main/binary-amd64/Packages.gz
+ 750e4cc76538b1b1e1a01914950e655be771e11cb223c716701db8d067fe8270              232 Release
+ a6566528c8d5a412ee5241c4121dd9cc7f43d750cfb1c4ad32b2caebf0e5abcc              933 main/binary-amd64/Packages
+ 703d2d94b16c0d12dec8caae9520a118a77f805a02a91908ac858ea35244c6e1              585 main/binary-amd64/Packages.gz
 SHA512:
- a7cefbfbf622a3c4c92385d9d9da2ab5ce544d170b1478dcc9fc21fd30ba4e20d2f1c3a719aeb3847c099561c771909946efd4983573515bfce590e84e05b96c              232 Release
- 0330d1ee8ebbe7ad12594b48302e4d9c2eb505f0e8c42452dcfda0e7fc1c07db77074032429c546a8fcd167d7d63f8bd1b7c75bdd202f084077f1aecc7711b3e              933 main/binary-amd64/Packages
- c0f63311b1e487d07309beef50e1fddeb8ff0a9fb15c5fded0c78d503861db8f687af2355ee16bae7a0820a1b29161f8a9cab50a464f43b33fed92197efbf539              589 main/binary-amd64/Packages.gz
+ 595f0b81d2b271d87ad6ac6af5a09c87f16f289afcd02efae97aa432991a4ef037e91b282abd3883770e7fa5425cf224efb1fc81a9059955ba244192ff5c7804              232 Release
+ df8f2b235d20a99f737279ef2be908f9904706627749778e1fb4bdf48b65ebfa7a783133b1c7b60dfd3f0c1abae8b24e7cf0d244d12f571397718f7dd637afa1              933 main/binary-amd64/Packages
+ 4103fab8f1ef2d2626500705e20e213378d7f303d91d77f59deaac0d93f235203bdd4dd931def75d7edd8f7733c04469baa09d8687effef069e7f2f8ca280831              585 main/binary-amd64/Packages.gz
