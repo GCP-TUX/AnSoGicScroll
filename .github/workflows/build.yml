@@ -58,6 +58,51 @@ jobs:
           path: build/*.deb
 
   # ---------------------------------------------------------------------
+  # FEDORA -> genera .rpm con dependencias nativas de Fedora
+  # (se compila dentro de un contenedor Fedora, no en el runner Ubuntu,
+  # para que las dependencias detectadas usen los nombres de paquete
+  # correctos de Fedora/DNF en vez de los de Ubuntu/APT)
+  # ---------------------------------------------------------------------
+  build-fedora:
+    runs-on: ubuntu-latest
+    container: fedora:40
+    steps:
+      - name: Instalar git (necesario para checkout dentro del contenedor)
+        run: dnf install -y git
+
+      - uses: actions/checkout@v4
+
+      - name: Instalar dependencias del sistema (dnf)
+        run: |
+          dnf install -y \
+            gcc-c++ cmake ninja-build \
+            qt6-qtbase-devel \
+            mesa-libGL-devel \
+            libxcb-devel libX11-devel \
+            wayland-devel wayland-protocols-devel \
+            pipewire-devel \
+            opencv-devel \
+            pkgconf-pkg-config \
+            rpm-build
+
+      - name: Configurar CMake
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Compilar
+        run: cmake --build build --config Release
+
+      - name: Generar paquete .rpm (CPack)
+        run: |
+          cd build
+          cpack -G RPM
+
+      - name: Subir artefacto .rpm
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnSoGicScroll-fedora-rpm
+          path: build/*.rpm
+
+  # ---------------------------------------------------------------------
   # WINDOWS
   # ---------------------------------------------------------------------
   build-windows:
@@ -93,6 +138,9 @@ jobs:
       - name: Compilar
         run: cmake --build build --config Release
 
+      - name: Empaquetar dependencias de Qt (windeployqt)
+        run: windeployqt.exe --release --no-translations build\AnSoGicScroll.exe
+
       - name: Subir artefacto (ejecutable)
         uses: actions/upload-artifact@v4
         with:
@@ -100,6 +148,10 @@ jobs:
           path: |
             build/AnSoGicScroll.exe
             build/*.dll
+            build/platforms/**
+            build/styles/**
+            build/imageformats/**
+            build/generic/**
 
   # ---------------------------------------------------------------------
   # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)

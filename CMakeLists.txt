@@ -162,10 +162,12 @@ set(CPACK_PACKAGE_CONTACT "Gicel Cordoba Pech <gicel.cordoba@hotmail.com>")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 
 # --------------------------------------------------------------
-# LINUX -> genera .deb para APT
+# LINUX -> genera .deb (APT) y .rpm (DNF/YUM/Zypper)
 # --------------------------------------------------------------
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    set(CPACK_GENERATOR "DEB")
+    set(CPACK_GENERATOR "DEB;RPM")
+
+    # --- .deb ---
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Gicel Cordoba Pech <gicel.cordoba@hotmail.com>")
     set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
     set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
@@ -173,6 +175,14 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # Detecta automáticamente las dependencias reales del binario compilado
     # (Qt6, OpenCV, X11, PipeWire, etc.) inspeccionando los .so enlazados
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+
+    # --- .rpm ---
+    set(CPACK_RPM_PACKAGE_LICENSE "GPLv3")
+    set(CPACK_RPM_PACKAGE_GROUP "Applications/Multimedia")
+    set(CPACK_RPM_PACKAGE_URL "https://github.com/GCP-TUX/AnSoGicScroll")
+    set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
+    # Equivalente de SHLIBDEPS para RPM: detecta dependencias automáticamente
+    set(CPACK_RPM_PACKAGE_AUTOREQPROV ON)
 endif()
 
 # --------------------------------------------------------------
