@@ -13,8 +13,10 @@ find_package(OpenCV REQUIRED)
 # --- Windows: evitar que <windows.h> defina macros min/max ----------------
 # Sin esto, cualquier header que incluya <windows.h> antes que OpenCV rompe
 # std::numeric_limits<T>::max() en los headers de OpenCV (error C2589, etc.)
+# _WIN32_WINNT=0x0A00 (Windows 10) habilita APIs usadas para DPI awareness
+# (SetProcessDpiAwarenessContext, GetDpiForWindow) en todo el proyecto.
 if(WIN32)
-    add_compile_definitions(NOMINMAX WIN32_LEAN_AND_MEAN)
+    add_compile_definitions(NOMINMAX WIN32_LEAN_AND_MEAN _WIN32_WINNT=0x0A00)
 endif()
 
 # --- Linux-only: PkgConfig / PipeWire / X11 --------------------------------
@@ -118,6 +120,21 @@ endif()
 
 if(WIN32)
     target_link_libraries(AnSoGicScroll PRIVATE dwmapi Shcore)
+
+    # Corre windeployqt automáticamente después de cada build, para que
+    # las DLLs/plugins de Qt queden junto al .exe sin pasos manuales.
+    # Necesario tanto para pruebas locales como para que "cpack -G NSIS"
+    # tenga algo real que empaquetar (ver install(DIRECTORY ...) abajo).
+    find_program(WINDEPLOYQT_EXECUTABLE windeployqt)
+    if(WINDEPLOYQT_EXECUTABLE)
+        add_custom_command(TARGET AnSoGicScroll POST_BUILD
+            COMMAND "${WINDEPLOYQT_EXECUTABLE}" --release --no-translations
+                    "$<TARGET_FILE:AnSoGicScroll>"
+            COMMENT "Empaquetando dependencias de Qt con windeployqt")
+    else()
+        message(WARNING "windeployqt no encontrado: las DLLs de Qt no se "
+                         "copiaran automaticamente junto al ejecutable.")
+    endif()
 endif()
 
 target_include_directories(AnSoGicScroll PRIVATE src ${OpenCV_INCLUDE_DIRS})
@@ -153,6 +170,24 @@ if(UNIX AND NOT APPLE)
     # y recargan udev automáticamente al instalar.
     install(FILES resources/linux/udev/99-ansogicscroll-uinput.rules
             DESTINATION /etc/udev/rules.d)
+endif()
+
+# --- Windows install rules (exe + DLLs/plugins de windeployqt) -------------
+if(WIN32)
+    install(TARGETS AnSoGicScroll RUNTIME DESTINATION .)
+
+    # install(DIRECTORY ...) se evalúa en tiempo de "cpack"/"cmake --install",
+    # no en tiempo de configuración — por eso SÍ captura los archivos que el
+    # POST_BUILD de windeployqt (arriba) genera durante la compilación,
+    # aunque esos archivos no existan todavía cuando CMake se configuró.
+    install(DIRECTORY "$<TARGET_FILE_DIR:AnSoGicScroll>/"
+            DESTINATION .
+            FILES_MATCHING
+                PATTERN "*.dll"
+                PATTERN "platforms/*"
+                PATTERN "styles/*"
+                PATTERN "imageformats/*"
+                PATTERN "generic/*")
 endif()
 
 # =============================================================
@@ -207,6 +242,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(CPACK_NSIS_PACKAGE_NAME "AnSoGicScroll")
     set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
     set(CPACK_NSIS_MODIFY_PATH ON)
+    # Crea accesos directos en el menú Inicio (y ofrece uno en el escritorio)
+    set(CPACK_PACKAGE_EXECUTABLES "AnSoGicScroll" "AnSoGicScroll")
+    set(CPACK_CREATE_DESKTOP_LINKS "AnSoGicScroll")
 endif()
 
 include(CPack)
