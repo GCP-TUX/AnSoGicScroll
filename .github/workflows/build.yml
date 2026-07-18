@@ -215,11 +215,11 @@ jobs:
           name: AnSoGicScroll-windows
           path: |
             build/AnSoGicScroll.exe
-            build/*.dll
-            build/platforms/**
-            build/styles/**
-            build/imageformats/**
-            build/generic/**
+            build/deploy/*.dll
+            build/deploy/platforms/**
+            build/deploy/styles/**
+            build/deploy/imageformats/**
+            build/deploy/generic/**
 
   # ---------------------------------------------------------------------
   # PUBLICAR REPOSITORIO APT (solo al pushear un tag vX.Y.Z)

@@ -121,16 +121,22 @@ endif()
 if(WIN32)
     target_link_libraries(AnSoGicScroll PRIVATE dwmapi Shcore)
 
-    # Corre windeployqt automáticamente después de cada build, para que
-    # las DLLs/plugins de Qt queden junto al .exe sin pasos manuales.
-    # Necesario tanto para pruebas locales como para que "cpack -G NSIS"
-    # tenga algo real que empaquetar (ver install(DIRECTORY ...) abajo).
+    # Corre windeployqt automáticamente después de cada build. IMPORTANTE:
+    # se usa --dir para que las DLLs/plugins se copien a una subcarpeta
+    # AISLADA (build/deploy/), NUNCA directo en build/. Si se copiaran en
+    # build/ (la raíz), install(DIRECTORY ...) más abajo terminaría
+    # copiando también la carpeta de trabajo temporal de CPack
+    # (build/_CPack_Packages/...) dentro de sí misma, generando una
+    # recursión infinita que llena el disco (esto fue exactamente lo que
+    # causó que "cpack -G NSIS" fallara/colgara la primera vez).
     find_program(WINDEPLOYQT_EXECUTABLE windeployqt)
     if(WINDEPLOYQT_EXECUTABLE)
         add_custom_command(TARGET AnSoGicScroll POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E make_directory "${CMAKE_BINARY_DIR}/deploy"
             COMMAND "${WINDEPLOYQT_EXECUTABLE}" --release --no-translations
+                    --dir "${CMAKE_BINARY_DIR}/deploy"
                     "$<TARGET_FILE:AnSoGicScroll>"
-            COMMENT "Empaquetando dependencias de Qt con windeployqt")
+            COMMENT "Empaquetando dependencias de Qt con windeployqt (aislado en deploy/)")
     else()
         message(WARNING "windeployqt no encontrado: las DLLs de Qt no se "
                          "copiaran automaticamente junto al ejecutable.")
@@ -176,11 +182,10 @@ endif()
 if(WIN32)
     install(TARGETS AnSoGicScroll RUNTIME DESTINATION .)
 
-    # install(DIRECTORY ...) se evalúa en tiempo de "cpack"/"cmake --install",
-    # no en tiempo de configuración — por eso SÍ captura los archivos que el
-    # POST_BUILD de windeployqt (arriba) genera durante la compilación,
-    # aunque esos archivos no existan todavía cuando CMake se configuró.
-    install(DIRECTORY "$<TARGET_FILE_DIR:AnSoGicScroll>/"
+    # Fuente = build/deploy/ (carpeta aislada, ver POST_BUILD arriba), NO
+    # el directorio raíz de build/ — así se evita el auto-copiado
+    # recursivo con la carpeta de trabajo de CPack (_CPack_Packages/...).
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/deploy/"
             DESTINATION .
             FILES_MATCHING
                 PATTERN "*.dll"
