@@ -186,13 +186,24 @@ jobs:
       - name: Configurar CMake
         run: cmake -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}\vcpkg\scripts\buildsystems\vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_BUILD_TYPE=Release
 
-      - name: Compilar
+      - name: Compilar (incluye windeployqt automático vía CMake)
         run: cmake --build build --config Release
 
-      - name: Empaquetar dependencias de Qt (windeployqt)
-        run: windeployqt.exe --release --no-translations build\AnSoGicScroll.exe
+      - name: Instalar NSIS
+        run: choco install nsis -y
 
-      - name: Subir artefacto (ejecutable)
+      - name: Generar instalador .exe (CPack + NSIS)
+        run: |
+          cd build
+          cpack -G NSIS
+
+      - name: Subir instalador .exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: AnSoGicScroll-windows-installer
+          path: build/AnSoGicScroll-*.exe
+
+      - name: Subir artefacto portable (.zip)
         uses: actions/upload-artifact@v4
         with:
           name: AnSoGicScroll-windows
