@@ -11,6 +11,17 @@ A cross-platform screenshot tool with **smart auto-scroll capture**: it captures
 | Windows | ✅ Supported |
 | macOS | 🚧 Coming soon |
 
+## Demo
+
+### Linux (X11)
+[![Linux X11 demo](https://img.youtube.com/vi/nu78ZcpUBis/maxresdefault.jpg)](https://www.youtube.com/watch?v=nu78ZcpUBis)
+
+### Linux (Wayland)
+[![Linux Wayland demo](https://img.youtube.com/vi/GsLFDsY_g1k/maxresdefault.jpg)](https://www.youtube.com/watch?v=GsLFDsY_g1k)
+
+### Windows
+[![Windows demo](https://img.youtube.com/vi/YBKilkOGQpA/maxresdefault.jpg)](https://www.youtube.com/watch?v=YBKilkOGQpA)
+
 ## Installation
 
 ### Linux — Debian / Ubuntu 24.04+ (via APT)
