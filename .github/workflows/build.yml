@@ -195,7 +195,13 @@ jobs:
       - name: Generar instalador .exe (CPack + NSIS)
         run: |
           cd build
-          cpack -G NSIS
+          cpack -G NSIS -V
+
+      - name: Mostrar log de NSIS si falló
+        if: failure()
+        run: |
+          Get-Content "build\_CPack_Packages\win64\NSIS\NSISOutput.log" -ErrorAction SilentlyContinue
+        shell: pwsh
 
       - name: Subir instalador .exe
         uses: actions/upload-artifact@v4
