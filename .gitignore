@@ -10,3 +10,4 @@ AppDir/
 *.AppImage
 linuxdeploy-*.AppImage
 repo-checkout/
+CMakeLists.txt.autosave
