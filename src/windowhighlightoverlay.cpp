@@ -128,6 +128,7 @@ QRect WindowHighlightOverlay::getWindowUnderCursor() const
         return {};
     }
 
+    // --- Rectángulo de la ventana completa (con borde/barra de título) ---
     RECT rc{};
     HRESULT hr = DwmGetWindowAttribute(
         hwnd,
@@ -142,7 +143,36 @@ QRect WindowHighlightOverlay::getWindowUnderCursor() const
         }
     }
 
-    QRect rect(rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top);
+    // --- Rectángulo del área de contenido (sin barra de título/bordes) ---
+    // GetClientRect() devuelve coordenadas relativas a la propia ventana
+    // (siempre empieza en 0,0); ClientToScreen() las convierte a
+    // coordenadas absolutas de pantalla, igual que hace ShareX para
+    // distinguir "toda la ventana" del "área de contenido" (por ejemplo,
+    // el panel negro de una consola vs. su barra de título gris).
+    RECT clientRc{};
+    bool hasClientRect = false;
+    if (GetClientRect(hwnd, &clientRc)) {
+        POINT clientOrigin{0, 0};
+        if (ClientToScreen(hwnd, &clientOrigin)) {
+            clientRc.left   += clientOrigin.x;
+            clientRc.top    += clientOrigin.y;
+            clientRc.right  += clientOrigin.x;
+            clientRc.bottom += clientOrigin.y;
+            hasClientRect = (clientRc.right > clientRc.left && clientRc.bottom > clientRc.top);
+        }
+    }
+
+    // Si el cursor está dentro del área de contenido, resalta solo esa
+    // área (como ShareX); si está fuera de ella pero dentro de la ventana
+    // (barra de título, bordes), resalta la ventana completa.
+    const bool cursorInClientArea = hasClientRect &&
+                                    pt.x >= clientRc.left && pt.x < clientRc.right &&
+                                    pt.y >= clientRc.top  && pt.y < clientRc.bottom;
+
+    RECT chosenRc = (cursorInClientArea) ? clientRc : rc;
+
+    QRect rect(chosenRc.left, chosenRc.top,
+               chosenRc.right - chosenRc.left, chosenRc.bottom - chosenRc.top);
 
     // Optional fine adjustment to avoid clipping borders
     rect = rect.adjusted(1, 1, -1, -1);

@@ -404,7 +404,7 @@ void TrayApplication::waitAfterScroll(const QImage& beforeScroll) const
 #endif
 
 bool TrayApplication::stitchAndSaveResult(captureScreenScroll* captureSS,
-                                   const QString& baseDir) const
+                                          const QString& baseDir) const
 {
     const std::vector<std::string> paths = collectSortedPngs(baseDir);
 
@@ -577,6 +577,13 @@ QRect TrayApplication::selectScrollRegionFromImage(const QImage& screenshot)
                          loop.quit();
                      });
 
+    // NOTE (Wayland fix): en Wayland ninguna aplicacion puede posicionarse
+    // a si misma en coordenadas absolutas (setGeometry(0,0,...) es
+    // ignorado por el compositor). La unica forma fiable de que el
+    // selector cubra realmente toda la pantalla capturada es pedir modo
+    // pantalla completa explicitamente con showFullScreen(), que si es
+    // respetado por los compositores Wayland (protocolo xdg_toplevel
+    // set_fullscreen). No usar show() aqui.
     QTimer::singleShot(10, [selector]() {
         if (!selector) {
             return;
@@ -922,6 +929,18 @@ bool TrayApplication::setupWindowsScrollingCapture(ScrollCaptureContext& ctx)
                          loop.quit();
                      });
 
+    QObject::connect(&overlay,
+                     &WindowHighlightOverlay::cancelled,
+                     &overlay,
+                     [&]() {
+                         // ESC: solo quita el overlay, no selecciona nada ni
+                         // dispara la captura. hwnd se queda en nullptr, así
+                         // que el flujo de abajo lo trata como cancelación.
+                         qDebug() << "Window selection cancelled with ESC.";
+                         QObject::disconnect(&overlay, nullptr, &overlay, nullptr);
+                         loop.quit();
+                     });
+
     loop.exec();
 
     if (!hwnd) {
@@ -964,4 +983,3 @@ bool TrayApplication::setupWindowsScrollingCapture(ScrollCaptureContext& ctx)
     return true;
 }
 #endif
-
