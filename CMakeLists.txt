@@ -193,6 +193,23 @@ if(WIN32)
                 PATTERN "styles/*"
                 PATTERN "imageformats/*"
                 PATTERN "generic/*")
+
+    # OpenCV (y otras libs de vcpkg) llegan junto al .exe por el mecanismo
+    # "applocal" propio de vcpkg, que copia sus .dll directo en la RAÍZ de
+    # build/ durante la compilación — NO pasan por windeployqt (que solo
+    # conoce Qt), así que la regla de arriba no las incluye.
+    #
+    # install(CODE ...) corre en tiempo de "cpack"/"cmake --install" (no al
+    # configurar), por eso SÍ encuentra estos .dll aunque no existan todavía
+    # cuando se corre "cmake -B build". El glob busca solo archivos *.dll
+    # sueltos en la raíz de build/, SIN recursividad — por diseño nunca
+    # puede coincidir con la carpeta _CPack_Packages/ (es una carpeta, no
+    # un archivo .dll), así que no reintroduce el bug de recursión infinita
+    # que tuvimos antes.
+    install(CODE "
+        file(GLOB VCPKG_RUNTIME_DLLS \"${CMAKE_BINARY_DIR}/*.dll\")
+        file(INSTALL \${VCPKG_RUNTIME_DLLS} DESTINATION \"\${CMAKE_INSTALL_PREFIX}\")
+    ")
 endif()
 
 # =============================================================
