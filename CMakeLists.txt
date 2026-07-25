@@ -267,6 +267,19 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Crea accesos directos en el menú Inicio (y ofrece uno en el escritorio)
     set(CPACK_PACKAGE_EXECUTABLES "AnSoGicScroll" "AnSoGicScroll")
     set(CPACK_CREATE_DESKTOP_LINKS "AnSoGicScroll")
+
+    # Borra por completo la carpeta del menú Inicio ANTES de crear los
+    # accesos directos nuevos, y también al desinstalar. Esto evita que
+    # queden accesos directos "huérfanos" apuntando a rutas de builds
+    # anteriores (p. ej. si una instalación vieja usaba \bin\ y la nueva
+    # ya no) — no depende de que el registro de "desinstalar antes de
+    # instalar" haya quedado consistente, es una limpieza incondicional.
+    set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
+        RMDir /r \\\"$SMPROGRAMS\\\\AnSoGicScroll\\\"
+    ")
+    set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "
+        RMDir /r \\\"$SMPROGRAMS\\\\AnSoGicScroll\\\"
+    ")
 endif()
 
 include(CPack)
