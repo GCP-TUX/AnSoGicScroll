@@ -2,47 +2,11 @@
 #include "ScreenGrabber.h"
 
 #include <QApplication>
-#include <QGraphicsBlurEffect>
-#include <QGraphicsPixmapItem>
-#include <QGraphicsScene>
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMouseEvent>
 #include <QPainter>
-
-namespace
-{
-// Blurs a pixmap by downscaling, applying QGraphicsBlurEffect on the much
-// smaller image (fast even for large multi-monitor desktops), and scaling
-// back up. The upscale softens edges further, which reads as a pleasant
-// "out of focus" background rather than a sharp mosaic.
-QPixmap blurredCopy(const QPixmap &source)
-{
-    if (source.isNull()) {
-        return source;
-    }
-
-    const QSize smallSize = (source.size() / 6).expandedTo(QSize(1, 1));
-    const QPixmap small = source.scaled(smallSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-    QGraphicsScene scene;
-    auto *item = scene.addPixmap(small);
-    auto *blur = new QGraphicsBlurEffect;
-    blur->setBlurRadius(6.0);
-    blur->setBlurHints(QGraphicsBlurEffect::QualityHint);
-    item->setGraphicsEffect(blur);
-
-    QImage blurredSmall(small.size(), QImage::Format_ARGB32_Premultiplied);
-    blurredSmall.fill(Qt::transparent);
-    QPainter painter(&blurredSmall);
-    scene.render(&painter, QRectF(0, 0, small.width(), small.height()),
-                 QRectF(0, 0, small.width(), small.height()));
-    painter.end();
-
-    return QPixmap::fromImage(blurredSmall)
-        .scaled(source.size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-}
-} // namespace
+#include <QPainterPath>
 
 CaptureOverlay::CaptureOverlay(QWidget *parent)
     : QWidget(parent)
@@ -55,6 +19,10 @@ CaptureOverlay::CaptureOverlay(QWidget *parent)
     // its selection overlay. The trade-off is that the WM will no longer
     // hand us keyboard/mouse focus automatically, so it's grabbed manually
     // after show() (see CaptureOverlay::showOverlay()).
+    //
+    // NOTE: this only works on X11. Wayland compositors ignore
+    // BypassWindowManagerHint entirely — use the other constructor
+    // (taking a pre-captured QImage) on Wayland instead.
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::BypassWindowManagerHint);
     setAttribute(Qt::WA_DeleteOnClose);
     setCursor(Qt::CrossCursor);
@@ -62,7 +30,6 @@ CaptureOverlay::CaptureOverlay(QWidget *parent)
     setFocusPolicy(Qt::StrongFocus);
 
     m_background = ScreenGrabber::grabVirtualDesktop();
-    m_blurredBackground = blurredCopy(m_background);
     m_virtualDesktopRect = ScreenGrabber::virtualDesktopGeometry();
 
     setGeometry(m_virtualDesktopRect);
@@ -70,9 +37,41 @@ CaptureOverlay::CaptureOverlay(QWidget *parent)
              << "backgroundSize=" << m_background.size();
 }
 
+CaptureOverlay::CaptureOverlay(const QImage &screenshot, QWidget *parent)
+    : QWidget(parent)
+    , m_useFullScreen(true)
+{
+    // Same widget behaviour as the X11 path, minus BypassWindowManagerHint
+    // (ignored by Wayland compositors anyway) — mirrors the flags already
+    // proven to work for the Wayland scroll-region selector.
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setCursor(Qt::CrossCursor);
+    setMouseTracking(true);
+    setFocusPolicy(Qt::StrongFocus);
+
+    m_background = QPixmap::fromImage(screenshot);
+
+    // Treat the captured frame as if it WERE the whole virtual desktop,
+    // with its own origin at (0,0). Every place below that translates
+    // selections by "-m_virtualDesktopRect.topLeft()" then becomes a
+    // no-op, so the rest of the class needs no Wayland-specific branches.
+    m_virtualDesktopRect = QRect(QPoint(0, 0), screenshot.size());
+
+    setGeometry(m_virtualDesktopRect);
+    qDebug() << "[CaptureOverlay] (Wayland) screenshotSize=" << screenshot.size();
+}
+
 void CaptureOverlay::showOverlay()
 {
-    show();
+    if (m_useFullScreen) {
+        // Wayland: showFullScreen() is honoured by compositors (it's an
+        // explicit protocol request, xdg_toplevel::set_fullscreen), unlike
+        // manual positioning/BypassWindowManagerHint which are ignored.
+        showFullScreen();
+    } else {
+        show();
+    }
     raise();
     activateWindow();
     qDebug() << "[CaptureOverlay] after show() geometry=" << geometry()
@@ -89,15 +88,19 @@ void CaptureOverlay::paintEvent(QPaintEvent * /*event*/)
 {
     QPainter painter(this);
 
-    // Blurred/out-of-focus everywhere by default...
-    painter.drawPixmap(rect(), m_blurredBackground);
-    painter.fillRect(rect(), QColor(0, 0, 0, 60));
-
     if (m_dragging) {
         const QRect sel = selectionInLocalCoords();
 
-        // ...except the selected region, which is shown crisp and in focus.
-        painter.drawPixmap(sel, m_background, sel);
+        // Crisp full background, dim only OUTSIDE the active selection —
+        // matches the UX of Flameshot/ShareX and lets the user still see
+        // context around the area they're selecting.
+        painter.drawPixmap(rect(), m_background);
+
+        QPainterPath full;
+        full.addRect(rect());
+        QPainterPath hole;
+        hole.addRect(sel);
+        painter.fillPath(full.subtracted(hole), QColor(0, 0, 0, 100));
 
         painter.setPen(QPen(QColor("#4FC3F7"), 2));
         painter.setBrush(Qt::NoBrush);
@@ -108,11 +111,17 @@ void CaptureOverlay::paintEvent(QPaintEvent * /*event*/)
         QFontMetrics fm(painter.font());
         QRect textRect = fm.boundingRect(sizeText).adjusted(-4, -2, 4, 2);
         textRect.moveBottomLeft(labelPos.y() > textRect.height() ? labelPos
-                                                                   : sel.topLeft() + QPoint(4, 16));
+                                                                 : sel.topLeft() + QPoint(4, 16));
         painter.fillRect(textRect, QColor(0, 0, 0, 180));
         painter.setPen(Qt::white);
         painter.drawText(textRect, Qt::AlignCenter, sizeText);
     } else {
+        // Before dragging starts: show the screenshot crisp and clear, with
+        // just a very light dim so the hint text stays readable — no blur,
+        // so the user can actually see what they're about to select.
+        painter.drawPixmap(rect(), m_background);
+        painter.fillRect(rect(), QColor(0, 0, 0, 25));
+
         painter.setPen(Qt::white);
         const QString hint = tr("Arrastra para seleccionar una region en cualquier pantalla. Esc para cancelar.");
         QFontMetrics fm(painter.font());
