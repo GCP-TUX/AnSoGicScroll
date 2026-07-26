@@ -7,10 +7,10 @@ Maintainer: Gicel Cordoba Pech <gicel.cordoba@hotmail.com>
 Installed-Size: 614
 Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libopencv-core406t64 (>= 4.6.0+dfsg), libopencv-imgcodecs406t64 (>= 4.6.0+dfsg), libopencv-imgproc406t64 (>= 4.6.0+dfsg), libpipewire-0.3-0t64 (>= 0.3.1), libqt6core6t64 (>= 6.4.0), libqt6dbus6t64 (>= 6.4.0), libqt6gui6t64 (>= 6.4.0), libqt6widgets6t64 (>= 6.3.0), libstdc++6 (>= 13.1), libx11-6
 Filename: pool/stable/main/a/ansogicscroll/AnSoGicScroll-0.1.0-Linux.deb
-Size: 249538
-MD5sum: 25c34799e6c767d487be0ad8dd49ac56
-SHA1: 0efa86c678218c4cbbe258ff7509dc5fed26de8a
-SHA256: 88af598baa4e5042b6101d75b0523184146e5ce859cecf03ed3558d35c33a213
-SHA512: 220f71a868682b4de8edb1a26cc7ebd2c23cb85506c1f00b1471de5c5213323a29038a4de2ae30acd3e5246941e0c362863f263f5735d1dfc66aaa99ef17ab19
+Size: 249542
+MD5sum: 85b42264202dc0627e69870476096217
+SHA1: 3f7dca3cd2c9c0413a084ffa10f3a52579cc8474
+SHA256: f0cb4f18f51fefa8ce05767a850bb5b7399d0a1bcae14f9cb598c58d3e987081
+SHA512: a157507151c3edf3a6c3cf69d31ef1e4791a061c8251bf7c8a9211999a7f139c62131e4ebbed6bd98c7cd74a56084775c8eb1f736986dcaf126bb5cb3055e3ea
 Description: Captura de pantalla con autoscroll inteligente
 
