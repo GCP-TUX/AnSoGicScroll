@@ -267,6 +267,15 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Crea accesos directos en el menú Inicio (y ofrece uno en el escritorio)
     set(CPACK_PACKAGE_EXECUTABLES "AnSoGicScroll" "AnSoGicScroll")
     set(CPACK_CREATE_DESKTOP_LINKS "AnSoGicScroll")
+    # CAUSA RAÍZ del bug de accesos directos rotos: CPack asume por defecto
+    # que los ejecutables están en una subcarpeta "bin/" al construir la
+    # ruta de los accesos directos del menú Inicio/Escritorio — SIN
+    # IMPORTAR dónde install(TARGETS ... DESTINATION ...) los haya puesto
+    # realmente. Como instalamos en la raíz (DESTINATION .), hay que
+    # decírselo explícitamente aquí, o el instalador crea accesos directos
+    # apuntando a "...\bin\AnSoGicScroll.exe" (que no existe) en TODA
+    # instalación nueva, en cualquier máquina — no era un residuo viejo.
+    set(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 endif()
 
 include(CPack)
