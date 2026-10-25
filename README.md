@@ -70,13 +70,34 @@ sudo dnf install ansogicscroll
 
 ### Linux — any distro (AppImage)
 
-No installation or root access required:
+No installation required:
 
 ```bash
-wget https://github.com/GCP-TUX/AnSoGicScroll/releases/latest/download/AnSoGicScroll-x86_64.AppImage
+wget https://github.com/GCP-TUX/AnSoGicScroll/releases/latest/download/AnSoGicScroll-appimage.zip
+unzip AnSoGicScroll-appimage.zip
 chmod +x AnSoGicScroll-x86_64.AppImage
+```
+
+**Enable auto-scroll on X11 (one-time setup).** The AppImage cannot configure
+this by itself, so grant access to `/dev/uinput`:
+
+```bash
+sudo modprobe uinput
+echo uinput | sudo tee /etc/modules-load.d/uinput.conf
+echo 'KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-uinput.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+sudo usermod -aG input $USER
+```
+
+Then **reboot** (or log out and back in) and run:
+
+```bash
 ./AnSoGicScroll-x86_64.AppImage
 ```
+
+> This step is not needed on Wayland. If the AppImage fails with a FUSE error,
+> install `libfuse2` (`sudo apt install libfuse2t64` on Debian/Ubuntu/Kali).
 
 > **Note (Linux, X11 auto-scroll):** on the first install via APT or DNF, the package automatically grants your user access to `/dev/uinput` (required for simulating scroll events on X11) by adding you to the `input` group. This only takes effect after you **log out and back in** (or reboot) — a one-time step required by Linux itself, not something the installer can skip. If auto-scroll shows a "could not access /dev/uinput" error right after installing, just log out/in once and it will work. This step is not needed on Wayland.
 
